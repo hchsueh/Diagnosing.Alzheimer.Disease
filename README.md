@@ -52,7 +52,7 @@ For both cases, we selected only the entries that correspond to ADNI2. From this
 <br /><br />
 
 <p align="center">
-  <img src="fig_flow_dataset2.png"  width="600" />
+  <img src="fig_flow_dataset3.png"  width="600" />
 </p>
 <br /><br />
 
