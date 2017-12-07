@@ -78,7 +78,10 @@ With respect to statistical models to relate clinical and environmental features
 #### Overview of Modeling Tools
 We examined 17 different statistical models to select the optimal algorithm for predicting AD at baseline. All models used were derived from scikit-learn (sklearn) packages and executed in Python. Our data exploration, modeling approach, and progressive improvements to the baseline model are detailed next. Some caveats and limitations of our approach are mentioned directly in the text that follows; a more detailed examination of these conditions is provided in Appendix G.
 <br /><br />
-[FIGURE HERE]
+
+<p align="center">
+  <img src="fig_models.png"  width="835" />
+</p>
 
 #### Choice of Response Variable
 
