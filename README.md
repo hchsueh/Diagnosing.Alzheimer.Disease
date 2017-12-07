@@ -12,7 +12,6 @@ Alzheimer’s Disease (AD) is a degenerative brain disease and the most common c
 <br /><br />
 
 Given the debilitating nature of AD, the widespread and rising prevalence of this disease, and the increasing lifespan of human population, efforts to mitigate the incidence and damaged caused by AD in the future are imperative. A crucial step toward achieving this end is to understand the risk factors associated with AD. However, such predictive features are currently not well constrained. According to the U.S. 2017 Alzheimer’s Disease Facts and Figures:
-<br /><br />
 
 ```markdown
 “Although the research that followed has revealed a great deal about Alzheimer’s, much is 
@@ -65,8 +64,10 @@ In addition, we also explore the the association of CSF biomarkers t-tau and Aβ
 <br /><br />
 
 With respect to statistical models to relate clinical and environmental features that predict early diagnosis of the disease, numerous studies have been published that use the ADNI database to generate predictive models for the diagnosis and prognosis of AD. Statistical analyses using the ADNI database have established that both biomarkers as strong predictors of AD, however, few studies have explicitly addressed the relative importance of t-tau and Aβ in absolute terms (i.e., excluding the temporal evolution of levels in progression of AD):
-1. One study explored the role of Aβ and tau proteins in the conversion from MCI to AD, however the methods involved removing predictors that contain missing values. It is hoped that our model with more elaborate imputation methods could improve upon this previous work. 
+1. One study explored the role of Aβ and tau proteins in the conversion from MCI to AD, however the methods involved removing predictors that contain missing values. It is hoped that our model with more elaborate imputation methods could improve upon this previous work.
+
 2. Another study explored the impact of CSF p-tau levels in the progression rate of AD, where only stepwise discriminant analysis is used for statistical analysis of predictor covariance. Our model uses a wide range of statistical models and examines three different CSF tau peptides levels (p-tau, t-tau, and Aβ) so hopefully we are able to provide a more thorough examination of the relationship between CSF peptide levels and AD diagnosis.
+
 3. Yet another study performed the largest genome-wide association study (GWAS) of CSF tau levels published before 2013, where three novel genome-wide significant loci for CSF tau and p-tau were identified that show strong association with risk for AD. Linear regression was used for modeling single nucleotide polymorphism (SNP) for association with CSF biomarker levels. Without the expert knowledge in neuroscience and genetic analysis, It is our hope to use more complex predictive modeling techniques to unravel the association of CSF protein levels with risk/diagnosis of AD in the same ADNI dataset without delving into genetic analysis, which has a potential benefit of achieving a simpler yet powerful approach for AD diagnosis.
 <br /><br />
 
