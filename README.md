@@ -15,10 +15,10 @@ Given the debilitating nature of AD, the widespread and rising prevalence of thi
 <br /><br />
 
 ```markdown
-“Although the research that followed has revealed a great deal about Alzheimer’s, 
-much is yet to be discovered about the precise biological changes that cause 
-the disease, why it progresses more quickly in some than in others, and how 
-the disease can be prevented, slowed or stopped.”  
+“Although the research that followed has revealed a great deal about Alzheimer’s, much is 
+yet to be discovered about the precise biological changes that cause the disease, why it 
+progresses more quickly in some than in others, and how the disease can be prevented, 
+slowed or stopped.”  
 ```
 
 The clinical challenge in diagnosing AD arises because early forms of the disease do not present motor, sensory, or coordination deficits, and laboratory tests are not determinative. In addition, Mild Cognitive Impairment (MCI) is associated with AD, but more research is needed to improve accuracy of diagnostics that distinguish between amnestic MCI and prodromal AD. Methods that improve accurate identification of early forms of AD, which do not present with cognitive symptoms, are an important component of clinical and research efforts to better characterize the causes and risks associated with this devastating progressive disease.
@@ -55,6 +55,7 @@ For both cases, we selected only the entries that correspond to ADNI2. From this
 <p align="center">
   <img src="fig_flow_dataset2.png"  width="600" />
 </p>
+<br /><br />
 
 ### 3. LITERATURE REVIEW/RELATED WORK
 Research has attempted to augment these combined diagnostic tools with information about patients’ dietary and medical history. One studied found that Vitamin K antagonists increase cognitive impairment. Similarly, some efforts have focused on the role of diuretics and nutritional supplements in developing dementia. One publication using ADNI data found an association between non-steroidal anti-inflammatory drugs (NSAIDs) and improved cognition. Another paper presented trends in the ADNI dataset with respect to medications used to treat AD. Other studies have addressed the role of nutritional interventions (vitamin B12, B6, and E; omega-3 fatty acids; flavanol) and non-specific pharmacological interventions (NSAIDs, hormone-replacement therapy, Ginkgo biloba). In addition, three studies assessed the relationship between blood-thinners and AD, but none of these used the ADNI dataset.,, According to Galvin (2012), “Combination of interventions, such as non-pharmacologic treatments, pharmacotherapy, and medical foods, with complementary mechanisms of action may provide a rational approach that may result in maximum preservation of cognitive function in patients with AD.” Despite the promising nature of improving diagnostic accuracy of AD using medication features, few studies using ADNI have considered the medications that we investigate: calcium and vitamin D supplements, blood-thinning drugs, and cholesterol-lowering drugs.
@@ -67,8 +68,19 @@ With respect to statistical models to relate clinical and environmental features
 1. One study explored the role of Aβ and tau proteins in the conversion from MCI to AD, however the methods involved removing predictors that contain missing values. It is hoped that our model with more elaborate imputation methods could improve upon this previous work. 
 2. Another study explored the impact of CSF p-tau levels in the progression rate of AD, where only stepwise discriminant analysis is used for statistical analysis of predictor covariance. Our model uses a wide range of statistical models and examines three different CSF tau peptides levels (p-tau, t-tau, and Aβ) so hopefully we are able to provide a more thorough examination of the relationship between CSF peptide levels and AD diagnosis.
 3. Yet another study performed the largest genome-wide association study (GWAS) of CSF tau levels published before 2013, where three novel genome-wide significant loci for CSF tau and p-tau were identified that show strong association with risk for AD. Linear regression was used for modeling single nucleotide polymorphism (SNP) for association with CSF biomarker levels. Without the expert knowledge in neuroscience and genetic analysis, It is our hope to use more complex predictive modeling techniques to unravel the association of CSF protein levels with risk/diagnosis of AD in the same ADNI dataset without delving into genetic analysis, which has a potential benefit of achieving a simpler yet powerful approach for AD diagnosis.
+<br /><br />
 
 ### 4. MODELING APPROACH AND PROJECT TRAJECTORY 
+
+#### Overview of Project Trajectory
+
+#### Overview of Modeling Tools
+We examined 17 different statistical models to select the optimal algorithm for predicting AD at baseline. All models used were derived from scikit-learn (sklearn) packages and executed in Python. Our data exploration, modeling approach, and progressive improvements to the baseline model are detailed next. Some caveats and limitations of our approach are mentioned directly in the text that follows; a more detailed examination of these conditions is provided in Appendix G.
+<br /><br />
+[FIGURE HERE]
+
+#### Choice of Response Variable
+
 
 ### Reference
 
