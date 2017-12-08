@@ -373,4 +373,47 @@ This website does not provide medical advice. The content of this website, such 
 
 ### APPENDIX
 
+#### Appendix A. Accuracies on baseline train and test set, missing values removed
+For this preprocessing method, we find out that Random Forest has the highest accuracy in training set; however, according to the accuracy on test set, we think that there might be an overfitting, despite we have cross-validate the variables in it.
+<br />
+
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+
+#### Appendix B. Accuracy on baseline train and test set with missing values imputed 
+Model-Based Imputation:
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+
+Mean Imputation:
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+
+#### Appendix C. Accuracies using baseline+medications, baseline+biomarker, and baseline+medication+biomarker datasets
+Train and Test Accuracy, Baseline + Additional Medication Features
+
+Train and Test Accuracy, Baseline + Biomarker Features
+
+Train and Test Accuracy, Baseline + TAU Feature
+
+Train and Test Accuracy, Baseline + PTAU Feature
+
+Train and Test Accuracy, Baseline + Medication + Biomarker Features
+
+Supplemental Data: Drug ALONE without baseline predictors
+
+Supplemental Data: Comparisons between All Datasets and Selected Models
+
+#### Appendix E. Histogram of Missing Values in Baseline Predictor Columns (Prior to Data Cleaning)
+
+#### Appendix F. List of Drugs 
+
+
+#### Appendix G. Key Limitations, Concerns, and Caveats of the Analysis
+
+#### Appendix H. Additional Preliminary EDA 
+
 
