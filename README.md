@@ -286,18 +286,19 @@ As a final analysis, we also explored a hypothetical model that used only the me
 
 #### Comparison between CSF TAU and ABETA
 Amyloid-Beta:
-
 <p align="center">
   <img src="fig_sec5_table4_new.png"  width="650" />
+</p>
+
+Tau:
+<p align="center">
+  <img src="fig_sec5_table5_new.png"  width="650" />
 </p>
 
 __In line with the literature about the “amyloid-tau debate” mentioned previously, we see that the performance accuracy changes by about the same amount when we incorporate tau and amyloid-beta features individually to the baseline model.__ Interestingly, the RF model performs better with Aβ than with tau, and the LRCV model performs better with tau. Importantly, both of these features do not improve the test accuracy above the baseline model, which exhibited a test accuracy of 0.77. 
 <br />
 
 #### Baseline+Medication+Biomarker Model Results
-<p align="center">
-  <img src="fig_sec5_table5_new.png"  width="650" />
-</p>
 
 <p align="center">
   <img src="fig_sec5_table6_new.png"  width="650" />
