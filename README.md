@@ -4,8 +4,9 @@ Final Project Report for AC209a - Introduction to Data Science
 
 Official Group #46: Carlo Amadei, Hsiang Hsu, Rebecca Stern, Thomas Hsueh
 
-### TODO1: Table of Content ? perhaps followed by a border line
-### TODO2: References - appended after each section so that reader will have to at least gloss over?
+### TODO1: *"Finding the smallest and least expensive feature subset is important" - AC209 Guidlines
+### TODO2: Table of Content ? perhaps followed by a border line
+### TODO3: References - appended after each section so that reader will have to at least gloss over?
 
 ### 1. Problem Statement and Motivation
 Alzheimer’s Disease (AD) is a degenerative brain disease and the most common cause of dementia, and AD rates are increasing annually. As of 2006, the global prevalence of AD was 26.6 million, and this figure is expected to increase four-fold by 2050. In the United States in 2016, AD was the sixth leading cause of death. From 2000-2013, deaths from AD increased 71% – this rise was larger than the increase in deaths from stroke (+23%) and heart disease (+14%) during the same time period.
@@ -97,6 +98,48 @@ First, we consider just the observation related to ADNI2 and baseline (VISCODE =
 To explore possible covariates and/or collinearity, we used a covariance heatmap generated with Matplotlib. A heatmap of some select baseline model predictors and DX_bl is provided below. There is some expected collinearity between features – for example, the two genders are anticorrelated – and there does not appear to be significant covariance that would be cause for exclusion of certain features. Some of the features exhibit very strong correlation to DX_bl. This was one of the first indications that perhaps some predictors, especially CDR, MMSE, and RAVLT, could be too strong of predictors. In the next section, “Baseline Model: Selection, Optimization and Evaluation,” we discuss our reasoning for removing these three variables because they are effectively a proxy for AD diagnosis. Also of note is that the heatmap reveals that being Hispanic and male patients are positively correlated with AD diagnosis in the baseline visit.
 <br />
 
+<p align="center">
+  <img src="fig_sec4_heatmap.png"  width="700" />
+</p>
+
+To handle missing values in the features that were not already discarded, we considered four different approaches: (1) remove all missing values; (2) fill missing values with mean imputation (3) impute missing values using linear regression. We chose to proceed with linear-regression-based imputation, since it achieves high performance and does not result in a reduction of the AD class in as dramatic a way as when we remove all missing values, while mean-imputation performs worse and is theoretically making unrealistic, even destructive, assumption in the structural pattern among the data.
+<br />
+
+We evaluated whether the dataset was imbalanced with respect to each diagnosis class at baseline. The ratio of the classes does not significantly change after pre-processing the data (remove missing values, imputing missing values), as illustrated in the figures below. While AD is smaller than the CN and MCI categories, the ratio between AD and the other classes is not less than 10%, so we determine that the class does not suffer from underrepresentation.
+<br />
+
+Given that the symptomatic presentation of AD does not comprise any conclusive genetic, biomarker, or other clinical variable, this means that many predictors must be combined together to improve the predictive power of our model. As such, we chose to perform the imputation on the entire dataset before splitting it into test and train sets; this allowed us to include as many observations as possible in the imputation. Using the dataset of imputed values using linear regression, we split it into train and test sets by 75% and 25%, respectively. Finally, we standardized the continuous predictors. We chose standardization over normalization because the former is less sensitive to outliers. In the next section, we describe our process of building the baseline model using the training set that results, and then improving the baseline model with additional predictors related to medications and biomarkers.
+<br /><br />
+
+#### Baseline Model: Selection, Optimization and Evaluation
+
+
+#### Improvements to the Baseline Model: Medications (Supplements, Prescription Drugs)
+
+
+#### Improvements to the Baseline Model: Amyloid-Beta (Aβ) and Tau
+
+
+
+### 5. RESULTS, CONCLUSIONS AND FUTURE WORK
+
+#### Results
+
+
+#### Conclusions
+
+
+#### Future Research
+
+#### Conflict of Interest
+The authors of this report declare no conflict of interest.
+<br />
+
+#### Disclaimer
+This website does not provide medical advice. The content of this website, such as graphics, images, text and all other materials, is provided for reference and educational purposes only. The content is not meant to be complete or exhaustive or to be applicable to any specific individual's medical condition.
+<br />
+
+#### Please see the Appendix for additional details mentioned in this report. 
 
 
 ### Reference
@@ -109,8 +152,6 @@ To explore possible covariates and/or collinearity, we used a covariance heatmap
 6. https://adni.loni.usc.edu/wp-content/uploads/2008/07/adni2-procedures-manual.pdf
 7. http://www.adni-info.org/Scientists/doc/ADNI2_Protocol_A3_17Oct2014_CLEAN.pdf
 8. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3345787/
-
-
 
 
 ### ==================================================================
