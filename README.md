@@ -20,7 +20,7 @@ Alzheimer’s Disease (AD) is a degenerative brain disease and the most common c
 <br />
 
 <p align="center">
-  <img src="fig_AD_facts2.png"  width="780" />
+  <img src="fig_AD_facts3.png"  width="780" />
 </p>
 
 Given the debilitating nature of AD, the widespread and rising prevalence of this disease, and the increasing lifespan of human population, efforts to mitigate the incidence and damaged caused by AD in the future are imperative. A crucial step toward achieving this end is to understand the risk factors associated with AD. However, such predictive features are currently not well constrained. According to the U.S. 2017 Alzheimer’s Disease Facts and Figures [4]:
