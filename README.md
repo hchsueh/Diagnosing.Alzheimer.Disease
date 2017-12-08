@@ -179,7 +179,26 @@ In the next section, we describe our process of building the baseline model with
 <br /><br />
 
 #### Baseline Model: Selection, Optimization and Evaluation
+Below we provide a bar chart of the performance on the test and training sets using the 17 statistical models fitted to the baseline ADNIMERGE data.
+<br />
 
+<p align="center">
+  <img src="fig_sec4_baseline_barchart.png"  width="830" />
+</p>
+
+While several of the models performed acceptably well on the test set using the baseline data (accuracies ~60%-72%), we analyze two of them in-depth for the baseline dataset and baseline+additional features related to medications and biomarkers. The first model we focus on is __multinomial logistic regression model with cross-validation__ – sklearn’s LogisticRegressionCV – which not only generated a __high preliminary accuracy on the test set (76%)__, but also provides easily interpretable results with respect to the coefficients of the features, as __the beta values__ can be used directly to interpret the direction and strength of the correlation between each feature and DX_bl. Details of the coefficient analysis are provided in a later section of this report. In a similar way, the __RandomForestClassifier__ from Sklearn allows for analysis of __individual feature strengths__ using the feature_importances_ tool. This gives us an indication of the gini importance (or mean decrease impurity) associated with each random forest model predictor; that is, it provides the average over all trees in the ensemble of the total decrease in impurity at the node (weighted by probability of reaching the node, or the proportion of samples that reach the node) that results from a given feature. As such, if the feature_importances_ value is low, then the feature is not important.
+<br />
+
+In addition, __we noticed that the test accuracy was exceptionally high when we included certain predictors.__ After ranking the predictors by their influence on the performance of the model, we found that these predictors were the most influential on the accuracy of the baseline model: __MMSE_bl, RAVLT_bl, and CDRSB_bl__. In addition to the heatmap presented previously, this was the primary motivation for removing these three predictors from the baseline model. __Without these three features, our test set accuracy using multiple LRCV was reasonable at 0.77__. The classification accuracy score (percent of correct classification of DX_bl) was used to evaluate the models. __We decide not to use the area under the receiver operating characteristic (ROC) curve (AUC)__ because the dataset is not biased toward one class or another and the response variable is multi-class, so accuracy score is a sufficient metric for evaluating our model performance. 
+<br />
+
+Below is a table of the dataset size for the baseline features and baseline + additional features, before and after pre-processing.
+<br />
+
+<p align="center">
+  <img src="fig_sec4_dataset_size.png"  width="700" />
+</p>
+<br />
 
 #### Improvements to the Baseline Model: Medications (Supplements, Prescription Drugs)
 
