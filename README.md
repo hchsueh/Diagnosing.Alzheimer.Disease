@@ -1,4 +1,4 @@
-## Improving Diagnosis Accuracy in Alzheimer’s Disease Patients: Drugs, Supplements, and Tau Protein Levels Are Important Predictors
+## Improving Diagnosis Accuracy in Alzheimer’s Disease Patients: Drugs, Supplements, and Protein Levels Are Important Predictors
 
 Final Project Report for AC209a - Introduction to Data Science (Fall 2017)
 
