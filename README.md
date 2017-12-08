@@ -6,7 +6,7 @@ Official Group #46: Carlo Amadei, Hsiang Hsu, Rebecca Stern, Thomas Hsueh
 
 ### TODO1: *"Finding the smallest and least expensive feature subset is important" - AC209 Guidlines
 ### TODO2: Table of Content ? perhaps followed by a border line
-### TODO3: References - appended after each section so that reader will have to at least gloss over?
+### TODO3: References
 
 ### 1. Problem Statement and Motivation
 Alzheimer’s Disease (AD) is a degenerative brain disease and the most common cause of dementia, and AD rates are increasing annually.[1] As of 2006, the global prevalence of AD was 26.6 million, and this figure is expected to increase four-fold by 2050.[2] In the United States in 2016, AD was the sixth leading cause of death.[3] From 2000-2013, deaths from AD increased 71% – this rise was larger than the increase in deaths from stroke (+23%) and heart disease (+14%) during the same time period.
@@ -130,38 +130,37 @@ The following shows the 17 adopted statistical models in a list and in a chart w
 </p>
 
 #### Choice of Response Variable
-__The preliminary analysis led us to choose to use “DX_bl” as the response variable.__ The “DX” column includes up to five entries for a given patient along the longitudinal course of their participation in the study. Our initial exploration revealed that models using “DX” might risk having in-sample correlation because there are multiple rows for a single person, all of which would be non-independent as a result. This is validated by our later analysis of the classification accuracy using “DX” as the response variable, which is unrealistically high (accuracy >95%).  
+__The preliminary analysis led us to choose to use “DX_bl” as the response variable__. The “DX” column includes up to five entries for a given patient along the longitudinal course of their participation in the study. Our initial exploration revealed that models using “DX” might risk having in-sample correlation because there are multiple rows for a single person, all of which would be non-independent as a result. This is validated by our later analysis of the classification accuracy using “DX” as the response variable, which is unrealistically high (accuracy >95%). 
 <br />
 
-Given that “DX_bl” is the response variable, we chose only the rows and predictors that correspond to the baseline visit for each patient. As such, the results of our model could be used as a predictive tool for diagnosis (CN, MCI, or AD) at any given point in time, but they do not provide information about disease progression, or the longitudinal change in features for an individual patient. For the purposes of this analysis, we focus on the diagnosis of AD (DX_bl = AD), but the tools provided in our model could be extended to assess the relationship between the variables we include (their values in absolute terms) and the likelihood of being diagnosed into any of the three categories.
+Given that “DX_bl” is the response variable, we chose only the rows and predictors that correspond to the baseline visit for each patient. As such, the results of our model could be used as a predictive tool for diagnosis (CN, MCI, or AD) at any given point in time, but they do not provide information about disease progression, or the longitudinal change in features for an individual patient. For the purposes of this analysis, a large part of our discussion focuses on the diagnosis of AD (DX_bl = AD), but the tools provided in our model could be extended to assess the relationship between the variables we include (their values in absolute terms) and the likelihood of being diagnosed into any of the three categories.
 <br />
 
 #### Data Cleaning, Reconciliation, and Imputation 
 First, we consider just the observation related to ADNI2 and baseline (VISCODE == ‘bl’). Then, we substitute  -1, -4, and ‘Unknown’ as NaN, following the indication from [ADNI training presentation](https://adni.loni.usc.edu/wp-content/uploads/2012/08/slide_data_training_part2_reduced-size.pdf). We calculated the percent of each predictor column that contains missing values and we also assumed that the data was missing completely at random (MCAR), which is in line with previous studies.[40] We then discarded predictors that contain more than 40% of the missing data, and we sized down the dataframe by considering only the predictors referring to the baseline visit. In particular, we discarded variables that were connected to later visits, such as length of time incurred since the baseline visit. In order to do that we evaluate all the predictors to include in the model, drawing upon information from the preliminary model runs as well as qualitative information from the [ADNI Data FAQs](http://adni.loni.usc.edu/data-samples/data-faq/), [ADNI training presentation](https://adni.loni.usc.edu/wp-content/uploads/2012/08/slide_data_training_part2_reduced-size.pdf), and the [ADNI2 procedures manual](https://adni.loni.usc.edu/wp-content/uploads/2008/07/adni2-procedures-manual.pdf). Finally, we used hot-one encoding to expand categorical predictors (e.g. gender) and we encoded the response variable, DX_bl, with ordinal treatment such that the values CN, MCI, and AD are represented by integers 0, 1 and 2, respectively).[41]
 <br />
 
-__To explore possible covariates and/or collinearity, we used a covariance heatmap generated with Matplotlib.__ A heatmap of some select baseline model predictors and DX_bl is provided below. As illustrated, some of the features exhibit very strong correlation to DX_bl. __This was one of the first indications that perhaps some features should not be treated as predictors, but rather proxies for the response variable, DX_bl__. In particular, Clinical Dementia Rating (CDRSB_bl), Mini-Mental State Exam (MMSE_bl), and Rey Auditory Verbal Learning Test (RAVLT_learning_bl, RAVLT_forgetting_bl, RAVLT_perc_forgetting_bl, RAVLT_immediate_bl) raised these concerns.
+__To explore possible covariates and/or collinearity, we used a covariance heatmap generated with Matplotlib__. A heatmap of some select baseline model predictors and DX_bl is provided below. As illustrated, some of the features exhibit very strong correlation to DX_bl. This was one of the first indications that __perhaps some features should not be treated as predictors, but rather proxies for the response variable, DX_bl__. In particular, __Clinical Dementia Rating (CDRSB_bl), Mini-Mental State Exam (MMSE_bl), and Rey Auditory Verbal Learning Test (RAVLT_learning_bl, RAVLT_forgetting_bl, RAVLT_perc_forgetting_bl, RAVLT_immediate_bl) raised these concerns__. It is interesting to note that RAVLT_forgetting_bl does not seem to discriminate well between the diagnostic classes, while RAVLT_learning does. In the next section, “Baseline Model: Selection, Optimization and Evaluation,” we further justify our decision to remove these three variables given that they are effectively a proxy for AD diagnosis.
 <br />
 
 <p align="center">
   <img src="fig_sec4_heatmap1.png"  width="700" />
 </p>
 
-__After removing RAVLT, MMSE, and CDR-related features, we generate a new heatmap of the remaining features, shown next.__ There is some expected collinearity between features (e.g., the two genders are anticorrelated), and there does not appear to be significant covariance that would be cause for exclusion of any of the remaining features. CDR, MMSE, and RAVLT could be too strong of predictors. __Also of note is that the heatmap reveals that being Hispanic and male patients are positively correlated with AD diagnosis in the baseline visit.__
+Below is a density plot of the relationship between MMSE_bl and the various diagnostic classes. Addition EDA analyses are provided in Appendix H.
 <br />
-
-<p align="center">
-  <img src="fig_sec4_heatmap2.png"  width="700" />
-</p>
-
-__From a conceptual standpoint, it makes sense to exclude predictors that represent a proxy for diagnosing Alzheimer’s Disease__ because these predictors are used to deduce the diagnosis response variable. Below is a density plot of the relationship between MMSE_bl and the various diagnostic classes. Addition EDA analyses are provided in Appendix H. 
-
 <p align="center">
   <img src="fig_sec4_density_plot.png"  width="700" />
 </p>
 
-It is interesting to note that RAVLT_forgetting_bl does not seem to discriminate well between the diagnostic classes. In the next section, “Baseline Model: Selection, Optimization and Evaluation,” we further discuss our reasoning for removing these three variables given that they are effectively a proxy for AD diagnosis.
+__After visualizing this strong correlation and researching the meaning of RAVLT, MMSE, and CDR from a conceptual standpoint, we decided to exclude these predictors from our baseline model__. This seems justified, given that these features are often considered to be a proxy for diagnosing Alzheimer’s Disease, and thus closely represent the response variable.
 <br />
+
+__After removing RAVLT, MMSE, and CDR-related features, we generate a new heatmap of the remaining features, shown next__. There is some expected collinearity between features (e.g., the two genders are anticorrelated), and there does not appear to be significant covariance that would be cause for exclusion of any of the remaining features. __Also of note is the heatmap reveals that being Hispanic and male is positively correlated with AD diagnosis in the baseline visit.__
+
+<p align="center">
+  <img src="fig_sec4_heatmap2.png"  width="700" />
+</p>
 
 __To handle missing values__ in the features that were not already discarded, we considered three different approaches:
 1. remove all missing values.
@@ -171,17 +170,17 @@ __To handle missing values__ in the features that were not already discarded, we
 __We chose to proceed with linear-regression-based imputation__, since it achieves high performance and does not result in a reduction of the AD class in as dramatic a way as when we remove all missing values, while mean-imputation performs worse and is theoretically making unrealistic, even destructive, assumption in the structural pattern among the data.
 <br />
 
-__We evaluated whether the dataset was imbalanced with respect to each diagnosis class at baseline.__ The ratio of the classes does not significantly change after pre-processing the data (remove missing values, imputing missing values), as illustrated in the figures below. While AD is smaller than the CN and MCI categories, the ratio between AD and the other classes is not less than 10%, so __we determine that the class does not suffer from underrepresentation.__
+__We evaluated whether the dataset was imbalanced with respect to each diagnosis class at baseline.__ The ratio of the classes does not significantly change after pre-processing the data (remove missing values, imputing missing values), as illustrated in the figures below. While AD is smaller than the CN and MCI categories, the ratio between AD and the other classes is not less than 10%, so __we determine that the class does not suffer from underrepresentation__.
 <br />
 
 <p align="center">
   <img src="fig_sec4_histogram_dxbl.png"  width="700" />
 </p>
 
-Given that the symptomatic presentation of AD does not comprise any conclusive genetic, biomarker, or other clinical variable, this means that many predictors must be combined together to improve the predictive power of our model. As such, __we chose to perform the imputation on the entire dataset before splitting it into test and train sets; this allowed us to include as many observations as possible in the imputation.__ Taking the dataset with model-based imputation, we then split it into train and test sets by 75% and 25%, respectively. Finally, __we standardized the continuous predictors. We chose standardization over normalization because the former is less sensitive to outliers.__
+Given that the symptomatic presentation of AD does not comprise any conclusive genetic, biomarker, or other clinical variable, this means that many predictors must be combined together to improve the predictive power of our model. As such, __we chose to perform the imputation on the entire dataset before splitting it into test and train sets; this allowed us to include as many observations as possible in the imputation__. Taking the dataset with model-based imputation, we then split it into train and test sets by 75% and 25%, respectively. Finally, __we standardized the continuous predictors. We chose standardization over normalization because the former is less sensitive to outliers__.
 <br />
 
-In the next section, we describe our process of building the baseline model with the predictors derived from ADNIMERGE.csv, and then improving the baseline model with predictors from ADMCPATIENTDRUGCLASSES_20170512.csv and UPENNbiomk9041917.csv. 
+In the next sub-section, we describe our process of building the baseline model with the predictors derived from ADNIMERGE.csv, and then improving the baseline model with predictors from ADMCPATIENTDRUGCLASSES_20170512.csv and UPENNbiomk9041917.csv. 
 <br /><br />
 
 #### Baseline Model: Selection, Optimization and Evaluation
@@ -192,10 +191,10 @@ Below we provide a bar chart of the performance on the test and training sets us
   <img src="fig_sec4_baseline_barchart.png"  width="830" />
 </p>
 
-While several of the models performed acceptably well on the test set using the baseline data (accuracies ~60%-72%), we analyze two of them in-depth for the baseline dataset and baseline+additional features related to medications and biomarkers. The first model we focus on is __multinomial logistic regression model with cross-validation__ – sklearn’s LogisticRegressionCV – which not only generated a __high preliminary accuracy on the test set (76%)__, but also provides easily interpretable results with respect to the coefficients of the features, as __the beta values__ can be used directly to interpret the direction and strength of the correlation between each feature and DX_bl. Details of the coefficient analysis are provided in a later section of this report. In a similar way, the __RandomForestClassifier__ from Sklearn allows for analysis of __individual feature strengths__ using the feature_importances_ tool. This gives us an indication of the gini importance (or mean decrease impurity) associated with each random forest model predictor; that is, it provides the average over all trees in the ensemble of the total decrease in impurity at the node (weighted by probability of reaching the node, or the proportion of samples that reach the node) that results from a given feature. As such, if the feature_importances_ value is low, then the feature is not important.
+While several of the models performed acceptably well on the test set using the baseline data (accuracies ~60%-72%), we analyze two of them in-depth for the baseline dataset and baseline+additional features related to medications and biomarkers. The first model we focus on is __multinomial logistic regression model with cross-validation__ – sklearn’s LogisticRegressionCV – which not only generated a __high preliminary accuracy on the test set (76%)__, but also provides easily interpretable results with respect to the coefficients of the features, as the __beta values__ can be used directly to interpret the direction and strength of the correlation between each feature and DX_bl. Details of the coefficient analysis are provided in a later section of this report. In a similar way, the __RandomForestClassifier__ from Sklearn allows for analysis of __individual feature strengths__ using the feature_importances_tool. This gives us an indication of the gini importance (or mean decrease impurity) associated with each random forest model predictor; that is, it provides the average over all trees in the ensemble of the total decrease in impurity at the node (weighted by probability of reaching the node, or the proportion of samples that reach the node) that results from a given feature. As such, if the feature_importances_ value is low, then the feature is not important.
 <br />
 
-In addition, __we noticed that the test accuracy was exceptionally high when we included certain predictors.__ After ranking the predictors by their influence on the performance of the model, we found that these predictors were the most influential on the accuracy of the baseline model: __MMSE_bl, RAVLT_bl, and CDRSB_bl__. In addition to the heatmap presented previously, this was the primary motivation for removing these three predictors from the baseline model. __Without these three features, our test set accuracy using multiple LRCV was reasonable at 0.77__. The classification accuracy score (percent of correct classification of DX_bl) was used to evaluate the models. __We decide not to use the area under the receiver operating characteristic (ROC) curve (AUC)__ because the dataset is not biased toward one class or another and the response variable is multi-class, so accuracy score is a sufficient metric for evaluating our model performance. 
+In addition, __we noticed that the test accuracy was exceptionally high when we included certain predictors__. After ranking the predictors by their influence on the performance of the model, we found that these predictors were the most influential on the accuracy of the baseline model: __MMSE_bl, RAVLT_bl, and CDRSB_bl__. In addition to the heatmap presented previously, this was the primary motivation for removing these three predictors from the baseline model. __Without these three features, our test set accuracy using multiple LRCV was reasonable at 0.77__. The classification accuracy score (percent of correct classification of DX_bl) was used to evaluate the models. __We decide not to use the area under the receiver operating characteristic (ROC) curve (AUC)__ because the dataset is not biased toward one class or another and the response variable is multi-class, so accuracy score is a sufficient metric for evaluating our model performance. 
 <br />
 
 Below is a table of the dataset size for the baseline features and baseline + additional features, before and after pre-processing.
@@ -206,16 +205,19 @@ Below is a table of the dataset size for the baseline features and baseline + ad
 </p>
 <br />
 
-#### Improvements to the Baseline Model: Medications (Supplements, Prescription Drugs)
-We next built upon the baseline model by incorporating the additional predictors for calcium supplements, vitamin D supplements, cholesterol-lowering drugs, blood-thinning drugs, TAU levels, P-TAU, and ABETA (Aβ) levels. We performed preliminary EDA on the additional predictors to ensure that these variables are appropriate for use. Below is a heatmap illustrating the covariance between the additional predictors and the response variable, DX_bl.
+#### Improvements to the Baseline Model: Medications and Biomarkers
+We next built upon the baseline model by incorporating the additional predictors for calcium supplements, vitamin D supplements, cholesterol-lowering drugs, blood-thinning drugs, TAU levels, P-TAU, and ABETA (Aβ) levels. We performed preliminary EDA on the additional predictors to ensure that these variables are appropriate for use. Below is a heatmap illustrating the covariance between the additional predictors and the response variable, DX_bl. 
 <br />
 
 <p align="center">
   <img src="fig_sec4_heatmap_additional.png"  width="650" />
 </p>
 
-#### Improvements to the Baseline Model: Amyloid-Beta (Aβ) and Tau
+__The total number of patients that take medication is circa 5% and this sample is dominated by the patients assuming blood thinner (circa 3.5%)__.
+<br />
 
+In the section that follows, we review some of the key findings of our models using the merged baseline, medication, and biomarker predictors. Detailed discussion of the predictor coefficients and feature importances are also provided for the multiple LRCV and random forest classifier models, respectively.
+<br /><br />
 
 
 ### 5. RESULTS, CONCLUSIONS AND FUTURE WORK
