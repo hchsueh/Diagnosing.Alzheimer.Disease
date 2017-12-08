@@ -224,6 +224,33 @@ In the section that follows, we review some of the key findings of our models us
 
 #### Results
 
+#### Baseline Model Results
+<p align="center">
+  <img src="fig_sec5_table1_new.png"  width="650" />
+</p>
+
+#### Baseline + Additional Medication Predictor Model Results
+<p align="center">
+  <img src="fig_sec5_table2_new.png"  width="650" />
+</p>
+
+#### Baseline+Biomarker Model Results
+<p align="center">
+  <img src="fig_sec5_table3_new.png"  width="650" />
+</p>
+
+<p align="center">
+  <img src="fig_sec5_table4_new.png"  width="650" />
+</p>
+
+<p align="center">
+  <img src="fig_sec5_table5_new.png"  width="650" />
+</p>
+
+#### Baseline+Medication+Biomarker Model Results
+<p align="center">
+  <img src="fig_sec5_table6_new.png"  width="650" />
+</p>
 
 #### Conclusions
 
