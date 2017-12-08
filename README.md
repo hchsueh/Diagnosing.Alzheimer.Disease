@@ -5,10 +5,17 @@ Final Project Report for AC209a - Introduction to Data Science
 Official Group #46: Carlo Amadei, Hsiang Hsu, Rebecca Stern, Thomas Hsueh
 
 ### TODO1: *"Finding the smallest and least expensive feature subset is important" - AC209 Guidlines
-### TODO2: Table of Content ? perhaps followed by a border line
-### TODO3: References
 
-### 1. Problem Statement and Motivation
+### Table of Content
+- Problem statement and motivation
+- Introduction and description of the data
+- Literature review / related work
+- Modeling approach and project trajectory
+- Results, conclusions and future work
+- Reference
+- Appendix
+
+### 1. PROBLEM STATEMENT AND MOTIVATION
 Alzheimer’s Disease (AD) is a degenerative brain disease and the most common cause of dementia, and AD rates are increasing annually.[1] As of 2006, the global prevalence of AD was 26.6 million, and this figure is expected to increase four-fold by 2050.[2] In the United States in 2016, AD was the sixth leading cause of death.[3] From 2000-2013, deaths from AD increased 71% – this rise was larger than the increase in deaths from stroke (+23%) and heart disease (+14%) during the same time period.
 <br />
 
