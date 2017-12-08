@@ -9,14 +9,14 @@ Official Group #46: Carlo Amadei, Hsiang Hsu, Rebecca Stern, Thomas Hsueh
 ### TODO3: References - appended after each section so that reader will have to at least gloss over?
 
 ### 1. Problem Statement and Motivation
-Alzheimer’s Disease (AD) is a degenerative brain disease and the most common cause of dementia, and AD rates are increasing annually. As of 2006, the global prevalence of AD was 26.6 million, and this figure is expected to increase four-fold by 2050. In the United States in 2016, AD was the sixth leading cause of death. From 2000-2013, deaths from AD increased 71% – this rise was larger than the increase in deaths from stroke (+23%) and heart disease (+14%) during the same time period.
+Alzheimer’s Disease (AD) is a degenerative brain disease and the most common cause of dementia, and AD rates are increasing annually.[1] As of 2006, the global prevalence of AD was 26.6 million, and this figure is expected to increase four-fold by 2050.[2] In the United States in 2016, AD was the sixth leading cause of death.[3] From 2000-2013, deaths from AD increased 71% – this rise was larger than the increase in deaths from stroke (+23%) and heart disease (+14%) during the same time period.
 <br />
 
 <p align="center">
   <img src="fig_AD_facts.png"  width="780" />
 </p>
 
-Given the debilitating nature of AD, the widespread and rising prevalence of this disease, and the increasing lifespan of human population, efforts to mitigate the incidence and damaged caused by AD in the future are imperative. A crucial step toward achieving this end is to understand the risk factors associated with AD. However, such predictive features are currently not well constrained. According to the U.S. 2017 Alzheimer’s Disease Facts and Figures:
+Given the debilitating nature of AD, the widespread and rising prevalence of this disease, and the increasing lifespan of human population, efforts to mitigate the incidence and damaged caused by AD in the future are imperative. A crucial step toward achieving this end is to understand the risk factors associated with AD. However, such predictive features are currently not well constrained. According to the U.S. 2017 Alzheimer’s Disease Facts and Figures [4]:
 
 ```markdown
 “Although the research that followed has revealed a great deal about Alzheimer’s, much is 
@@ -25,15 +25,15 @@ progresses more quickly in some than in others, and how the disease can be preve
 slowed or stopped.”  
 ```
 
-__The clinical challenge in diagnosing AD arises because early forms of the disease do not present motor, sensory, or coordination deficits, and laboratory tests are not determinative.__ In addition, Mild Cognitive Impairment (MCI) is associated with AD, but more research is needed to improve accuracy of diagnostics that distinguish between amnestic MCI and prodromal AD. Methods that improve accurate identification of early forms of AD, which do not present with cognitive symptoms, are an important component of clinical and research efforts to better characterize the causes and risks associated with this devastating progressive disease.
+__The clinical challenge in diagnosing AD arises because early forms of the disease do not present motor, sensory, or coordination deficits, and laboratory tests are not determinative.[5]__ In addition, Mild Cognitive Impairment (MCI) is associated with AD, but more research is needed to improve accuracy of diagnostics that distinguish between amnestic MCI and prodromal AD.[6,7,8] Methods that improve accurate identification of early forms of AD, which do not present with cognitive symptoms, are an important component of clinical and research efforts to better characterize the causes and risks associated with this devastating progressive disease. 
 <br />
 
-__Machine learning algorithms and statistical modeling offer a potential solution to offset the challenge in diagnosing early AD__: by leveraging multiple data sources and combining information on neuropsychological, genetic, and biomarker indicators, among others, statistical models are a promising tool to enhance clinical detection of early AD. __In this report, we optimize a predictive models for diagnosis of CN, MCI, and AD using a set of baseline features, and we improve the baseline feature set by considering additional variables.__ Specifically, __we investigate the relationship between AD diagnosis and taking certain medications__ (e.g., Calcium supplements, Vitamin D supplements, blood-thinning medications, cholesterol-lowering drugs). __We also evaluate the importance of two cerebrospinal fluid (CSF) biomarkers, total tau (tau) and amyloid-Beta (Aβ), in diagnosing AD__, as the relative role of these two biomarkers in AD remains a contentious issue in the academic community. Our hypothesis are as follows:
-1. the diagnosis of early AD can be improved by considering features related to whether a patient takes certain medications (calcium, vitamin D, blood thinners, and cholesterol-lowering drugs).
-2. CSF-tau is a stronger predictor than Aβ for AD diagnosis.
+Machine learning algorithms and statistical modeling offer a potential solution to offset the challenge in diagnosing early AD: by leveraging multiple data sources and combining information on neuropsychological, genetic, and biomarker indicators, among others, statistical models are a promising tool to enhance clinical detection of early AD. __In this project, we optimize predictive models for the diagnosis of AD pathologies using a set of baseline features, and we improve the model performance by incorporating additional variables related to patient medications and biomarkers.__ Specifically, we investigate the relationship between AD diagnosis and taking certain medications (i.e., Calcium supplements, Vitamin D supplements, blood-thinning medications, cholesterol-lowering drugs). We also evaluate the importance of two cerebrospinal fluid (CSF) biomarkers, tau (tau) and amyloid-Beta (Aβ), in diagnosing AD, as the relative role of these two biomarkers in AD remains a contentious issue in the academic community.[9,10] __Our hypothesis are as follows:__
+__1. The diagnosis of early AD can be improved by considering features related to whether a patient takes certain medications (calcium, vitamin D, blood thinners, and cholesterol-lowering drugs).
+2. CSF-tau is a stronger predictor than Aβ for AD diagnosis.__
 <br />
 
-The modeling approach we design could serve as a tool for clinicians to improve diagnosis of AD, as well as a springboard for future research related to AD and other neurodegenerative diseases. __We contacted Dr. Sally Temple – a renowned neuroscientist specializing in neurodegenerative disease and co-founder of the Regenerative Research Foundation – who provided insights in direct communication:__
+The modeling approach we design could serve as a tool for clinicians to improve diagnosis of AD, as well as a springboard for future research related to AD and other neurodegenerative diseases.[11] __We contacted Sally Temple, Ph.D., a renowned neuroscientist specializing in neurodegenerative disease and co-founder of the Regenerative Research Foundation, who offered her insights related to our project objectives:__
 
 ```markdown
 “It is essential to improve identification of signs of AD onset, because as drugs are
