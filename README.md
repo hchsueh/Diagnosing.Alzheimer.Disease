@@ -140,12 +140,18 @@ Given that “DX_bl” is the response variable, we chose only the rows and pred
 First, we consider just the observation related to ADNI2 and baseline (VISCODE == ‘bl’). Then, we substitute  -1, -4, and ‘Unknown’ as NaN, following the indication from [ADNI training presentation](https://adni.loni.usc.edu/wp-content/uploads/2012/08/slide_data_training_part2_reduced-size.pdf). We calculated the percent of each predictor column that contains missing values and we also assumed that the data was missing completely at random (MCAR), which is in line with previous studies.[40] We then discarded predictors that contain more than 40% of the missing data, and we sized down the dataframe by considering only the predictors referring to the baseline visit. In particular, we discarded variables that were connected to later visits, such as length of time incurred since the baseline visit. In order to do that we evaluate all the predictors to include in the model, drawing upon information from the preliminary model runs as well as qualitative information from the [ADNI Data FAQs](http://adni.loni.usc.edu/data-samples/data-faq/), [ADNI training presentation](https://adni.loni.usc.edu/wp-content/uploads/2012/08/slide_data_training_part2_reduced-size.pdf), and the [ADNI2 procedures manual](https://adni.loni.usc.edu/wp-content/uploads/2008/07/adni2-procedures-manual.pdf). Finally, we used hot-one encoding to expand categorical predictors (e.g. gender) and we encoded the response variable, DX_bl, with ordinal treatment such that the values CN, MCI, and AD are represented by integers 0, 1 and 2, respectively).[41]
 <br />
 
-__To explore possible covariates and/or collinearity, we used a covariance heatmap generated with Matplotlib.__ A heatmap of some select baseline model predictors and DX_bl is provided below. There is some expected collinearity between features – for example, the two genders are anticorrelated – and there does not appear to be significant covariance that would be cause for exclusion of certain features. __Some of the features exhibit very strong correlation to DX_bl.__ This was one of the first indications that perhaps some predictors, especially Clinical Dementia Rating (CDRSB_bl), Mini-Mental State Exam (MMSE_bl), and Rey Auditory Verbal Learning Test (RAVLT_learning_bl, RAVLT_forgetting_bl, RAVLT_perc_forgetting_bl, RAVLT_immediate_bl
-) __CDR, MMSE, and RAVLT could be too strong of predictors.__ __Also of note is that the heatmap reveals that being Hispanic and male patients are positively correlated with AD diagnosis in the baseline visit.__
+__To explore possible covariates and/or collinearity, we used a covariance heatmap generated with Matplotlib.__ A heatmap of some select baseline model predictors and DX_bl is provided below. As illustrated, some of the features exhibit very strong correlation to DX_bl. __This was one of the first indications that perhaps some features should not be treated as predictors, but rather proxies for the response variable, DX_bl__. In particular, Clinical Dementia Rating (CDRSB_bl), Mini-Mental State Exam (MMSE_bl), and Rey Auditory Verbal Learning Test (RAVLT_learning_bl, RAVLT_forgetting_bl, RAVLT_perc_forgetting_bl, RAVLT_immediate_bl) raised these concerns.
 <br />
 
 <p align="center">
-  <img src="fig_sec4_heatmap.png"  width="700" />
+  <img src="fig_sec4_heatmap1.png"  width="700" />
+</p>
+
+__After removing RAVLT, MMSE, and CDR-related features, we generate a new heatmap of the remaining features, shown next.__ There is some expected collinearity between features (e.g., the two genders are anticorrelated), and there does not appear to be significant covariance that would be cause for exclusion of any of the remaining features. CDR, MMSE, and RAVLT could be too strong of predictors. __Also of note is that the heatmap reveals that being Hispanic and male patients are positively correlated with AD diagnosis in the baseline visit.__
+<br />
+
+<p align="center">
+  <img src="fig_sec4_heatmap2.png"  width="700" />
 </p>
 
 __From a conceptual standpoint, it makes sense to exclude predictors that represent a proxy for diagnosing Alzheimer’s Disease__ because these predictors are used to deduce the diagnosis response variable. Below is a density plot of the relationship between MMSE_bl and the various diagnostic classes. Addition EDA analyses are provided in Appendix H. 
@@ -201,7 +207,12 @@ Below is a table of the dataset size for the baseline features and baseline + ad
 <br />
 
 #### Improvements to the Baseline Model: Medications (Supplements, Prescription Drugs)
+We next built upon the baseline model by incorporating the additional predictors for calcium supplements, vitamin D supplements, cholesterol-lowering drugs, blood-thinning drugs, TAU levels, P-TAU, and ABETA (Aβ) levels. We performed preliminary EDA on the additional predictors to ensure that these variables are appropriate for use. Below is a heatmap illustrating the covariance between the additional predictors and the response variable, DX_bl.
+<br />
 
+<p align="center">
+  <img src="fig_sec4_heatmap_additional.png"  width="650" />
+</p>
 
 #### Improvements to the Baseline Model: Amyloid-Beta (Aβ) and Tau
 
