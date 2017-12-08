@@ -443,7 +443,7 @@ Supplemental Data: Comparisons between All Datasets and Selected Models
 
 #### Appendix F. List of Drugs 
 <p align="center">
-  <img src="fig_appendix_F.png"  width="650" />
+  <img src="fig_appendix_F_new.png"  width="650" />
 </p>
 
 #### Appendix G. Key Limitations, Concerns, and Caveats of the Analysis
