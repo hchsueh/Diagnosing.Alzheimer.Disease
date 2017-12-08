@@ -230,23 +230,23 @@ In the section that follows, we review some of the key findings of our models us
 ### 5. RESULTS, CONCLUSIONS AND FUTURE WORK
 
 #### Results
-In this section, we present the key findings from our models. We provide tables of all of the models analyzed. For the purposes of the discussion, we focus on the logistic regression with cross validation (LRCV) and random forest (RF) model results. In brief, our ‘baseline’ model predicts DX_bl on the test set with an accuracy of 0.768 and 0.763 for LRCV and RF, respectively. When we add additional features about patient medications, the performance improves for the LRCV model, with a test accuracy for the ‘baseline+medication’ model of 0.778. For the RF model, the drug features do not appear to improve test performance. The biomarker features do not seem to improve the model results; for the ‘baseline+biomarker’ model, the test accuracy is 0.742 for both LRCV and RF. Likewise, including all predictors (baseline+medication+biomarker) lowers the test accuracy in the logistic regression model to 0.736. The RF accuracy slightly improves with this full predictor set, with a test accuracy of 0.770. Analysis of the significance of specific features using the coefficients of the LRCV model reveals that medications appear to be more helpful than biomarkers as predictors; none of the biomarkers (ABETA, TAU, P-TAU) are significant in the baseline+medication+biomarker model.
+In this section, we present the key findings from our models and provide tables of all of the models analyzed for each predictor scenario (baseline, baseline+medication, baseline+biomarker, and baseline+medication+biomarker). For the purposes of the discussion, we focus on the logistic regression with cross validation (LRCV) and random forest (RF) model results. In brief, our ‘baseline’ model predicts DX_bl on the test set with an accuracy of 0.768 and 0.763 for LRCV and RF, respectively. When we add additional features about patient medications, the performance improves for the LRCV model, with a test accuracy for the ‘baseline+medication’ model of 0.778. For the RF model, the drug features do not appear to improve test performance. The biomarker features do not seem to improve the model results; for the ‘baseline+biomarker’ model, the test accuracy is 0.742 for both LRCV and RF. Likewise, including all predictors (baseline+medication+biomarker) lowers the test accuracy in the logistic regression model to 0.736. The RF accuracy slightly improves with this full predictor set, with a test accuracy of 0.770. Analysis of the significance of specific features using the coefficients of the LRCV model reveals that medications appear to be more helpful than biomarkers as predictors; none of the biomarkers (ABETA, TAU, P-TAU) are significant in the baseline+medication+biomarker model.
 <br />
 
-Below are a few overall points about the features in the baseline and baseline+medication+biomarker models. We see that age, and many of the genetic predictors included in ADNIMERGE are significant. While the biomarker results do not reveal a significant impact on the likelihood of AD, our investigation into the medications shows that cholesterol-lowering drugs and blood thinners are both significant features in our updated model. Further details about the features are below.
+Below are a few overall points about the features in the baseline and baseline+medication+biomarker models. We see that age and many of the genetic predictors included in ADNIMERGE are significant. The biomarkers do not exhibit a significant impact on the likelihood of AD. Our investigation into the medications shows that cholesterol-lowering drugs and blood thinners are both significant predictors in our updated model. Further details about the features are below.
 <br />
 Baseline Model:
-1. The Predictors that are most important in the prediction of DX_bl are: 'AGE', 'FAQ_bl', 'MOCA_bl', 'APOE4_0.0'
-2. The Predictors that are Positively Correlated to AD are: 'AGE', 'MOCA_bl', 'APOE4_0.0'
-3. The Predictors that are Negatively Correlated to AD are: 'FAQ_bl'
+1. The Predictors that are most important in the prediction of DX_bl are: `'AGE', 'FAQ_bl', 'MOCA_bl', 'APOE4_0.0'`
+2. The Predictors that are Positively Correlated to AD are: `'AGE', 'MOCA_bl', 'APOE4_0.0'`
+3. The Predictors that are Negatively Correlated to AD are: `'FAQ_bl'`
 
 Baseline+Medication+Biomarker Model:
 <br />
-1. The Predictors that are important in the prediction of DX_bl are: 'AGE', 'ADAS11_bl', 'ADAS13_bl', 'FAQ_bl', 'Hippocampus_bl', 'MOCA_bl', 'EcogPtMem_bl', 'EcogPtTotal_bl', 'EcogSPMem_bl', 'EcogSPVisspat_bl', 'EcogSPTotal_bl', 'PTRACCAT_White', 'ANY BT_1', 'ANY CHOL_1'
-2. The Predictors that are Positively Correlated to AD are: 'AGE', 'Hippocampus_bl', 'MOCA_bl']
-3. The Predictors that are Negatively Correlated to AD are: ['ADAS11_bl', 'ADAS13_bl', 'FAQ_bl', 'EcogPtMem_bl', 'EcogPtTotal_bl', 'EcogSPMem_bl', 'EcogSPVisspat_bl', 'EcogSPTotal_bl', 'PTRACCAT_White', 'ANY BT_1', 'ANY CHOL_1'
+1. The Predictors that are important in the prediction of DX_bl are: `'AGE', 'ADAS11_bl', 'ADAS13_bl', 'FAQ_bl', 'Hippocampus_bl', 'MOCA_bl', 'EcogPtMem_bl', 'EcogPtTotal_bl', 'EcogSPMem_bl', 'EcogSPVisspat_bl', 'EcogSPTotal_bl', 'PTRACCAT_White', 'ANY BT_1', 'ANY CHOL_1'`
+2. The Predictors that are Positively Correlated to AD are: `'AGE', 'Hippocampus_bl', 'MOCA_bl'`
+3. The Predictors that are Negatively Correlated to AD are: `'ADAS11_bl', 'ADAS13_bl', 'FAQ_bl', 'EcogPtMem_bl', 'EcogPtTotal_bl', 'EcogSPMem_bl', 'EcogSPVisspat_bl', 'EcogSPTotal_bl', 'PTRACCAT_White', 'ANY BT_1', 'ANY CHOL_1'`
 
-It is important to note that while these results and the details that follow reveal interesting findings about potential interactions between patient medications and the likelihood of AD diagnosis, the results do not determine causality in the relationship. Nonetheless, our results are valuable because they provide information that could motivate future research efforts to understand the mechanisms that underlie the relationships. 
+It is important to note that while these results and the details that follow reveal interesting findings about potential interactions between patient medications and the likelihood of AD diagnosis, the results do not determine causality in the relationship. Nonetheless, our results are valuable because they provide information that could motivate future research efforts to understand the mechanisms that underlie the relationships.
 <br />
 
 #### Baseline Model Results
@@ -254,51 +254,63 @@ Below are details of all models’ accuracy on the train and test set using the 
 <p align="center">
   <img src="fig_sec5_table1_new.png"  width="650" />
 </p>
+<br />
 
 #### Baseline + Additional Medication Predictor Model Results
-We find that taking calcium supplements does not appear to have a significant effect on the diagnosis at baseline visit. However, taking blood thinners and cholesterol-lowering drugs are both significant features in the model; they are negatively correlated with AD diagnosis (that is, taking blood-thinners appears to reduce the risk of Alzheimer’s Disease, which confirms the aforementioned literature review that reveals blood-thinners reduce dementia risk). Interestingly, cholesterol-lowering drugs are also apparently associated with a lower likelihood of AD diagnosis. Few studies have mentioned this association, and our findings could serve as motivation for future clinical research to investigate the relationship that we find here. 
+<p align="center">
+  <img src="fig_sec5_bar1.png"  width="830" />
+</p>
+
+Overall, including the medication features generates 1 ~ 2% improvement in AD diagnosis accuracy. We find that taking calcium and vitamin D supplements does not have a significant effect on the diagnosis class at baseline visit. However, taking blood thinners and cholesterol-lowering drugs are both significant features in the model; they are negatively correlated with AD diagnosis (e.g., __taking blood-thinners appears to reduce the risk of Alzheimer’s Disease, which confirms the aforementioned literature review that reveals blood-thinners reduce dementia risk).[18]__ Our finding that taking cholesterol-lowering drugs is associated with a lower likelihood of AD diagnosis is particularly notable; __to the best of our knowledge, no studies using the ADNI dataset have addressed this interaction before. We hope that these results will motivate subsequent clinical research to investigate the relationships that we find.__
 <br />
 
-Baseline+Medication+Biomarker Model:
-The Predictors that are important in the prediction of DX_bl are: ['AGE', 'ADAS11_bl', 'ADAS13_bl', 'FAQ_bl', 'Hippocampus_bl', 'MOCA_bl', 'EcogPtMem_bl', 'EcogPtTotal_bl', 'EcogSPMem_bl', 'EcogSPVisspat_bl', 'EcogSPTotal_bl', 'PTRACCAT_White', 'ANY BT_1', 'ANY CHOL_1']
-The Predictors that are Positively Correlated to AD are: ['AGE', 'Hippocampus_bl', 'MOCA_bl']
-The Predictors that are Negatively Correlated to AD are: ['ADAS11_bl', 'ADAS13_bl', 'FAQ_bl', 'EcogPtMem_bl', 'EcogPtTotal_bl', 'EcogSPMem_bl', 'EcogSPVisspat_bl', 'EcogSPTotal_bl', 'PTRACCAT_White', 'ANY BT_1', 'ANY CHOL_1']
-<br />
-
-Including the medication features generates 1 ~ 2% improvement in AD diagnosis accuracy. A table of accuracies using the baseline+medication model follows: 
-<br />
+A table of accuracies using the baseline+medication model follows: 
 
 <p align="center">
   <img src="fig_sec5_table2_new.png"  width="650" />
 </p>
 
+As a final analysis, we also explored a hypothetical model that used only the medications as predictors (i.e., excluding all other ADNIMERGE.csv predictors from the baseline model). We found that, when considering only medications, blood thinners and cholesterol have a significant influence on predicting the MCI class of DX_bl. Calcium was positively correlated with MCI. However, for the AD class in this 3-predictor model, we find that none of the medications are significant predictors. This implies that __including medications as a supplemental feature in the baseline model is the best approach, and that these features may be particularly important for diagnosing prodromal stages of AD.__
+<br />
 
 #### Baseline+Biomarker Model Results
+
+<p align="center">
+  <img src="fig_sec5_bar2.png"  width="830" />
+</p>
+
 <p align="center">
   <img src="fig_sec5_table3_new.png"  width="650" />
 </p>
+
+
+#### Comparison between CSF TAU and ABETA
+Amyloid-Beta:
 
 <p align="center">
   <img src="fig_sec5_table4_new.png"  width="650" />
 </p>
 
-<p align="center">
-  <img src="fig_sec5_table5_new.png"  width="650" />
-</p>
-
-As in line with the literature “amyloid-tau debate” mentioned previously, we see that the performance accuracy improves by about the same amount when we add tau and amyloid-beta features individually to the baseline model. Interestingly, the RF model performs better with Aβ than with tau, and the LRCV model performs better with tau. Importantly, both of these features do not improve the test accuracy above the baseline model, which exhibited a test accuracy of 0.77. Perhaps, this is a manifestation of the fact that we are overfitting to the training set (exhibited by high train accuracies in the tables below), or some of the baseline predictors are negatively interfering with these biomarkers. In any event, the fact that the baseline model performs well could signify a form of support for choosing the baseline over the more computationally-expensive analysis of biomarker features, which are likely also more costly and time-consuming to investigate from a clinical standpoint. 
+__In line with the literature about the “amyloid-tau debate” mentioned previously, we see that the performance accuracy changes by about the same amount when we incorporate tau and amyloid-beta features individually to the baseline model.__ Interestingly, the RF model performs better with Aβ than with tau, and the LRCV model performs better with tau. Importantly, both of these features do not improve the test accuracy above the baseline model, which exhibited a test accuracy of 0.77. 
 <br />
 
 #### Baseline+Medication+Biomarker Model Results
 <p align="center">
+  <img src="fig_sec5_table5_new.png"  width="650" />
+</p>
+
+<p align="center">
   <img src="fig_sec5_table6_new.png"  width="650" />
 </p>
 
+As previously discussed and illustrated in the table above, the baseline model performance is higher than the model that integrates biomarker and medication predictors. The decrease in performance could be a manifestation of the fact that we are overfitting to the training set (exhibited by high train accuracies), or perhaps there is a negative interference between the baseline features and the biomarker, such that it reduces the performance when they are combined in a single model. In any event, __the fact that the baseline and baseline+drug models perform better than the baseline+drug+medication model is reason to support the use of a simpler model over one with more features, particularly those that are computationally expensive (e.g., biomarker features are likely also more costly and time-consuming to investigate from a clinical standpoint).__
+<br />
+
 #### Conclusions
-Accurate and early diagnosis of AD represents is crucial for mitigating the devastation caused by this disease, which has been increasing in prevalence.[44] Statistical models can serve as a tool to improve clinical diagnosis early AD and offer new insights for research about this devastating progressive illness, as well as other neurodegenerative diseases. We present a model using baseline features from the Alzheimer’s Disease Neuroimaging Initiative (ADNI) Phase 2 cohort using the ADNIMERGE.csv, and we expand the baseline model by accounting for features related to a patient’s current medications – calcium and vitamin D supplements, blood-thinning drugs, and cholesterol-lowering drugs – and a patient’s CSF t-tau, p-tau and amyloidaβ. Our results indicate that age of patients, races, predicting Cognitive Test Scores (EcogSPMem), health of brain (Hippocampus) and Montreal Cognitive Assessment (MoCA) are associated with a higher likelihood of being diagnosed with AD based on our analysis of the baseline visit data. In addition, our results reveal that CSF t-tau peptide could be a more useful predictor for early AD than Amyloid β.  Importantly, the fact that we find an association between __ANY BT_1', 'ANY CHOL_1 and AD diagnosis is significant because this feature is easily translated to the clinic for early diagnosis of AD. Features related to a patient’s medications are easy and cheap to obtain, and they are not computationally demanding to evaluate__.
+Accurate and early diagnosis of AD represents is crucial for mitigating the devastation caused by this disease, which has been increasing in prevalence.[44] Statistical models can serve as a tool to improve clinical diagnosis early AD and offer new insights for research about this devastating progressive illness, as well as other neurodegenerative diseases. We present a model using baseline features from the Alzheimer’s Disease Neuroimaging Initiative (ADNI) Phase 2 cohort using the ADNIMERGE.csv, and we expand the baseline model by accounting for features related to a patient’s current medications – calcium and vitamin D supplements, blood-thinning drugs, and cholesterol-lowering drugs – and a patient’s CSF total-tau, phosphorylated-tau and amyloid-β levels. Our results indicate that patients’ age, race, Everyday Cognition Memory Domain test scores (EcogSPMem), hippocampal volume, and Montreal Cognitive Assessment (MoCA) are associated with a higher likelihood of being diagnosed with AD based on our analysis of the baseline visit data. In addition, our results reveal that neither of the CSF biomarkers, tau or Aβ, are significant predictors of DX_bl when added to the baseline model. The fact that we find an association between blood-thinning (ANY BT) and cholesterol-lowering (ANY CHOL) drugs and AD diagnosis is significant because these two features are, we imagine, relatively easily translated from the clinic. Patient medical history should be readily attainable, cheap to reproduce, and, given the increasingly mainstream use of electronic health records, a potentially untapped resource for improving diagnosis of early stage AD. One might speculate that supplementing clinical diagnoses with information using a statistical model that includes features for patients’ medications could improve diagnostic accuracy. Perhaps, more research should be directed toward identifying causal links between medications that affect cardiovascular systems and cholesterol levels, rather than toward resolving the decades-old “tau-amyloid debate.” Our improved model with medication features could ameliorate the challenge of diagnosing early stages of AD when other symptoms are less readily detectable, which continues to plague the clinical and research communities alike. 
 
 #### Future Research
-We urge future research efforts be conducted to examine the potential interaction between [blood thinners] and AD in a clinical setting. In addition, our results reveal the potential for nutritional and medical history to serve as a supplemental feature for accurate AD diagnosis. In later work, we would like to explore the relationship between other medications – including Vitamin E supplements, ___ – and early AD diagnosis. Another potential avenue will be to incorporate ADNI3 data, which follows patients for a further five years and concludes in 2022. This is a particularly relevant dataset because one goal of ADNI3 is to use, “tau PET imaging to determine how tau tangles are related to amyloid levels and to cognition.[45]” Finally, we encourage other researchers to explore whether a similar relationship can be found with datasets other than ADNI, as this would further validate our findings. 
+Our results reveal the potential for nutritional and medical history to serve as a supplemental feature for accurate AD diagnosis. In later work, we would like to explore the relationship between other medications – including Vitamin E supplements – and early AD diagnosis. The research community would benefit from an examination of the potential causal factors underlying the interaction between blood-thinning drugs and AD. In addition, further analysis of the relationship between cholesterol-lowering drugs and DX_bl using ADNIGO and ADNI1 would provide support for our novel findings. Another potential avenue will be to incorporate ADNI3 data, which follows patients for a further five years and concludes in 2022. ADNI3 is particularly relevant with respect to our findings about the relative insignificance of biomarker data as supplements to the ADNIMERGE predictors because one goal of ADNI3 is to use “tau PET imaging to determine how tau tangles are related to amyloid levels and to cognition.[45]” Finally, we encourage researchers to explore datasets other than ADNI and to report whether a similar relationship between cholesterol-lowering drugs and these AD diagnostic classes can be found, as this would further validate our findings.
 
 #### Conflict of Interest
 The authors of this report declare no conflict of interest.
@@ -357,4 +369,8 @@ This website does not provide medical advice. The content of this website, such 
 43.  Rasmussen, C. E., & Williams, C. K. (2006). Gaussian processes for machine learning (Vol. 1). Cambridge: MIT press.
 44.  Khachaturian, Z. S. (1985). Diagnosis of Alzheimer's disease. Archives of neurology, 42(11), 1097-1105.
 45.  Weiner, M. W., Veitch, D. P., Aisen, P. S., Beckett, L. A., Cairns, N. J., Green, R. C., ... & Petersen, R. C. (2017). The Alzheimer's Disease Neuroimaging Initiative 3: continued innovation for clinical trial improvement. Alzheimer's & dementia: the journal of the Alzheimer's Association, 13(5), 561-571.
+
+
+### APPENDIX
+
 
