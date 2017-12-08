@@ -242,15 +242,51 @@ This website does not provide medical advice. The content of this website, such 
 
 
 ### Reference
-
-1. Loewenstein D, et al. Relative frequencies of Alzheimer’s disease, Lewy body, vascular and frontotemporal dementia, and hippocampal sclerosis in the State of Florida Brain Bank. Alzheimer Dis Assoc Disord 2002;16(4):203-12
-2. Brookmeyer, R., Johnson, E., Ziegler-Graham, K., & Arrighi, H. M. (2007). Forecasting the global burden of Alzheimer’s disease. Alzheimer's & dementia, 3(3), 186-191.
-3. Alzheimer's Association. (2016). 2016 Alzheimer's disease facts and figures. Alzheimer's & Dementia, 12(4), 459-509.
-4. Annweiler, C., Ferland, G., Barberger-Gateau, P., Brangier, A., Rolland, Y., & Beauchet, O. (2014). Vitamin K antagonists and cognitive impairment: results from a cross-sectional pilot study among geriatric patients. Journals of Gerontology Series A: Biomedical Sciences and Medical Sciences, 70(1), 97-101.
-5. DeBusk, R. M. (2000). Dietary supplements and cardiovascular disease. Current atherosclerosis reports, 2(6), 508-514.
-6. https://adni.loni.usc.edu/wp-content/uploads/2008/07/adni2-procedures-manual.pdf
-7. http://www.adni-info.org/Scientists/doc/ADNI2_Protocol_A3_17Oct2014_CLEAN.pdf
-8. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3345787/
+1.  Loewenstein D, et al. Relative frequencies of Alzheimer’s disease, Lewy body, vascular and frontotemporal dementia, and hippocampal sclerosis in the State of Florida Brain Bank. Alzheimer Dis Assoc Disord 2002;16(4):203-12
+2.  Brookmeyer, R., Johnson, E., Ziegler-Graham, K., & Arrighi, H. M. (2007). Forecasting the global burden of Alzheimer’s disease. Alzheimer's & dementia, 3(3), 186-191.
+3.  Alzheimer's Association. (2016). 2016 Alzheimer's disease facts and figures. Alzheimer's & Dementia, 12(4), 459-509.
+4.  https://www.alz.org/documents_custom/2017-facts-and-figures.pdf
+5.  McKhann, G., Drachman, D., Folstein, M., Katzman, R., Price, D., & Stadlan, E. M. (1984). Clinical diagnosis of Alzheimer's disease Report of the NINCDS‐ADRDA Work Group* under the auspices of Department of Health and Human Services Task Force on Alzheimer's Disease. Neurology, 34(7), 939-939.
+6.  Dubois, B., & Albert, M. L. (2004). Amnestic MCI or prodromal Alzheimer's disease?. The Lancet Neurology, 3(4), 246-248.
+7.  Trojanowski, J. Q., Vandeerstichele, H., Korecka, M., Clark, C. M., Aisen, P. S., Petersen, R. C., ... & Dean, R. (2010). Update on the biomarker core of the Alzheimer's Disease Neuroimaging Initiative subjects. Alzheimer's & Dementia, 6(3), 230-238.
+8.  Britt III, W. G., Hansen, A. M., Bhaskerrao, S., Larsen, J. P., Petersen, F., Dickson, A., ... & Kirsch, W. M. (2011). Mild cognitive impairment: prodromal Alzheimer's disease or something else?. Journal of Alzheimer's Disease, 27(3), 543-551.
+9.  Ittner, L. M., & Götz, J. (2011). Amyloid-β and tau—a toxic pas de deux in Alzheimer's disease. Nature Reviews Neuroscience, 12(2), 67-72.
+10.  Tapiola, T., Alafuzoff, I., Herukka, S. K., Parkkinen, L., Hartikainen, P., Soininen, H., & Pirttilä, T. (2009). Cerebrospinal fluid β-amyloid 42 and tau proteins as biomarkers of Alzheimer-type pathologic changes in the brain. Archives of neurology, 66(3), 382-389.
+11.  Wagner, J., Krauss, S., Shi, S., Ryazanov, S., Steffen, J., Miklitz, C., ... & Weckbecker, D. (2015). Reducing tau aggregates with anle138b delays disease progression in a mouse model of tauopathies. Acta neuropathologica, 130(5), 619-631.
+12.  http://adni.loni.usc.edu/
+13.  http://adni.loni.usc.edu/study-design/
+14.  http://www.adni-info.org/Scientists/doc/ADNI2_Protocol_A3_17Oct2014_CLEAN.pdf
+15.  https://adni.loni.usc.edu/wp-content/uploads/2008/07/adni2-procedures-manual.pdf
+16.  Annweiler, C., Ferland, G., Barberger-Gateau, P., Brangier, A., Rolland, Y., & Beauchet, O. (2014). Vitamin K antagonists and cognitive impairment: results from a cross-sectional pilot study among geriatric patients. Journals of Gerontology Series A: Biomedical Sciences and Medical Sciences, 70(1), 97-101.
+17.  DeBusk, R. M. (2000). Dietary supplements and cardiovascular disease. Current atherosclerosis reports, 2(6), 508-514.
+18.  Andrieu, S., Coley, N., Lovestone, S., Aisen, P. S., & Vellas, B. (2015). Prevention of sporadic Alzheimer's disease: lessons learned from clinical trials and future directions. The Lancet Neurology, 14(9), 926-944.
+19.  Peters, R., Beckett, N., Forette, F., Tuomilehto, J., Clarke, R., Ritchie, C., ... & Comsa, M. (2008). Incident dementia and blood pressure lowering in the Hypertension in the Very Elderly Trial cognitive function assessment (HYVET-COG): a double-blind, placebo controlled trial. The Lancet Neurology, 7(8), 683-689.
+20.  Hajjar, I., Hart, M., Chen, Y. L., Mack, W., Milberg, W., Chui, H., & Lipsitz, L. (2012). Effect of antihypertensive therapy on cognitive function in early executive cognitive impairment: a double-blind randomized clinical trial. Archives of internal medicine, 172(5), 442-444.
+21.  Collaborative, P. R. O. G. R. E. S. S., Neal, B., & MacMahon, S. (2003). Effects of blood pressure lowering with perindopril and indapamide therapy on dementia and cognitive decline in patients with cerebrovascular disease. Arch Intern Med, 163, 1069-75.
+22.  Doan, L., Choi, D., Kline, R., & Alzheimers Disease Neuroimaging Initiative. (2017). Impact of analgesics on executive function and memory in the Alzheimer's Disease Neuroimaging Initiative Database. Scandinavian Journal of Pain.
+23.  Epstein, N. U., Saykin, A. J., Risacher, S. L., Gao, S., & Farlow, M. R. (2010). Differences in medication use in the Alzheimer’s disease Neuroimaging initiative. Drugs & aging, 27(8), 677-686.
+24.  Galvin, J. E. (2012). Optimizing diagnosis and management in mild-to-moderate Alzheimer’s disease. Neurodegener Dis Manag, 2(3): 291–304.
+25.  Tiraboschi P, Hansen L, Thal L, Corey-Bloom J (2004). The importance of neuritic plaques and tangles to the development and evolution of AD. Neurology. 62 (11): 1984–9. 
+26.  Tatebe, H., Kasai, T., Ohmichi, T., Kishi, Y., Kakeya, T., Waragai, M., ... & Tokuda, T. (2017). Quantification of plasma phosphorylated tau to use as a biomarker for brain Alzheimer pathology: pilot case-control studies including patients with Alzheimer’s disease and down syndrome. Molecular neurodegeneration, 12(1), 63.
+27.  Schraen-Maschke, S., Sergeant, N., Dhaenens, C. M., Bombois, S., Deramecourt, V., Caillet-Boudin, M. L., ... & Buee, L. (2008). Tau as a biomarker of neurodegenerative diseases.
+28.  Citron, M. (2010). Alzheimer's disease: strategies for disease modification. Nature reviews Drug discovery, 9(5), 387-398.
+29.  Glenner, G. G. (1990). Alzheimer’s disease. In Biomedical Advances in Aging (pp. 51-62). Springer, Boston, MA. 
+30.  Han, S. D., Gruhl, J., Beckett, L., Dodge, H. H., Stricker, N. H., Farias, S., ... & Alzheimer’s Disease Neuroimaging Initiative. (2012). Beta amyloid, tau, neuroimaging, and cognition: sequence modeling of biomarkers for Alzheimer’s disease. Brain imaging and behavior, 6(4), 610-620.
+31.  Ittner, L. M., & Götz, J. (2011). Amyloid-β and tau—a toxic pas de deux in Alzheimer's disease. Nature Reviews Neuroscience, 12(2), 67-72.
+32.  Underwood, E. (2016). Tau protein—not amyloid—may be key driver of Alzheimer’s symptoms. Science Magazine. Retrieved from: http://www.sciencemag.org/news/2016/05/tau-protein-not-amyloid-may-be-key-driver-alzheimer-s-symptoms
+33.  Shaw, L. M., Vanderstichele, H., Knapik‐Czajka, M., Clark, C. M., Aisen, P. S., Petersen, R. C., ... & Dean, R. (2009). Cerebrospinal fluid biomarker signature in Alzheimer's disease neuroimaging initiative subjects. Annals of neurology, 65(4), 403-413.
+34.  Jack, C. R., Knopman, D. S., Jagust, W. J., Petersen, R. C., Weiner, M. W., Aisen, P. S., ... & Lesnick, T. G. (2013). Tracking pathophysiological processes in Alzheimer's disease: an updated hypothetical model of dynamic biomarkers. The Lancet Neurology, 12(2), 207-216.
+35.  Kim, S., Swaminathan, S., Shen, L., Risacher, S. L., Nho, K., Foroud, T., ... & Craig, D. W. (2011). Genome-wide association study of CSF biomarkers Aβ1-42, t-tau, and p-tau181p in the ADNI cohort. Neurology, 76(1), 69-79.
+36.  http://www.adni-info.org/Scientists/ADNIScientistsHome/ADNIPublications.html
+37.  Ewers, M., Walsh, C., Trojanowski, J. Q., Shaw, L. M., Petersen, R. C., Jack, C. R., ... & Vellas, B. (2012). Prediction of conversion from mild cognitive impairment to Alzheimer's disease dementia based upon biomarkers and neuropsychological test performance. Neurobiology of aging, 33(7), 1203-1214.
+38.  Cruchaga, C., Kauwe, J. S., Mayo, K., Spiegel, N., Bertelsen, S., Nowotny, P., ... & Owen, M. M. (2010). SNPs associated with cerebrospinal fluid phospho-tau levels influence rate of decline in Alzheimer's disease. PLoS genetics, 6(9), e1001101.
+39.  Cruchaga, C., Kauwe, J. S., Harari, O., Jin, S. C., Cai, Y., Karch, C. M., ... & Bertelsen, S. (2013). GWAS of cerebrospinal fluid tau levels identifies risk variants for Alzheimer’s disease. Neuron, 78(2), 256-268..
+40.  Lo, R. Y., Jagust, W. J., Aisen, P., Jack, C. R., Toga, A. W., Beckett, L., ... & Thomas, R. G. (2012). Predicting missing biomarker data in a longitudinal study of Alzheimer disease. Neurology, 78(18), 1376-1382.
+41.  Aisen, P., Petersen, R., Dononhue, M., & Weiner, M. (2015). ADNI 2 Clinical Core: Progress and Plans. Alzheimers Dement. 11(7): 734–739.
+42.  Hornik, K., Stinchcombe, M., & White, H. (1989). Multilayer feedforward networks are universal approximators. Neural networks, 2(5), 359-366.
+43.  Rasmussen, C. E., & Williams, C. K. (2006). Gaussian processes for machine learning (Vol. 1). Cambridge: MIT press.
+44.  Khachaturian, Z. S. (1985). Diagnosis of Alzheimer's disease. Archives of neurology, 42(11), 1097-1105.
+45.  Weiner, M. W., Veitch, D. P., Aisen, P. S., Beckett, L. A., Cairns, N. J., Green, R. C., ... & Petersen, R. C. (2017). The Alzheimer's Disease Neuroimaging Initiative 3: continued innovation for clinical trial improvement. Alzheimer's & dementia: the journal of the Alzheimer's Association, 13(5), 561-571.
 
 
 ### ==================================================================
