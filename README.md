@@ -462,7 +462,7 @@ Scatter Matrix of Strong Predictors for AD (potential proxy diagnostic variables
 </p>
 <br />
 
-Violinplot of Age vs. DX_bl class:
+Violin plot of Age vs. DX_bl class:
 <p align="center">
   <img src="fig_appendix_H3.png"  width="650" />
 </p>
