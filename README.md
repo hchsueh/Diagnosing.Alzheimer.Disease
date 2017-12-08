@@ -32,10 +32,10 @@ We hypothesize that the diagnosis of early AD can be improved by considering fea
 
 ### 2. INTRODUCTION AND DESCRIPTION OF THE DATA 
 We acquired our dataset from the Alzheimer’s Disease Neuroimaging Initiative (ADNI). The baseline statistical model that we develop is constructed using the ADNIMERGE.csv dataset from ADNI, which contains select variables related to clinical, genetic, neuropsychological and imaging results for the participants in ADNI. All phases of ADNI are represented in ADNIMERGE (e.g., ADNI1, ADNI2, ADNIGO). To maintain consistency across our analyses and manageability of the data, and to ensure that we can select only one observation for each patient effectively, we select only the patients who participated in the ADNI2 phase of the Initiative, representing a cohort size of approximately 800 patients. In the ADNI2 observations, each row corresponds to an exam of a patient (“RID”, the patient identifier), and specific visit; multiple rows can refer to the same patient for different visits. A thorough description of the ADNI cohort demographics is available online; in brief, the ADNI2 participants within ADNIMERGE.csv are from North America, aged 55-90, and ethnicities are represented in the study. The visit code column (VISCODE) allows us to identify baseline visit (‘bl’) predictors and predictors that refer to later visits. There are 94 columns in the baseline dataset, the majority of which correspond to independent variables that could be assessed at each exam.
-<br /><br />
+<br />
 
 There are two diagnosis features, DX and DX_bl, which correspond to diagnosis at each visit and at a patient’s first visit, or baseline visit. All diagnoses entries correspond to one of five categories: Cognitively Normal (CN), Significant Subjective Memory Concern (SMC), Early Mildly Cognitively Impaired (EMCI), Late Mildly Cognitively Impaired (LMCI, or classic MCI), and Alzheimer’s Disease (AD). We combine the EMCI and LMCI diagnostic classes into a single class, Mild Cognitive Impairment (MCI); an auxiliary benefit of doing this is it facilitates the extension of our model for future analyses that might include ADNI1 data, which employs only a single MCI category. We combine CN and SMC into one category, as SMC patients qualify as being “cognitively normal,” as illustrated below. For detailed treatment on our handling of the diagnosis feature as a response variable, please see the discussion in Section 4 titled, “Choice of Response Variable.”
-<br /><br />
+<br />
 
 <p align="center">
   <img src="fig_response_variable.png"  width="400" />
@@ -49,7 +49,7 @@ In addition to the ADNI2 entries within ADNIMERGE.csv, we incorporate two additi
 2. Data on patients’ cerebrospinal fluid (CSF) levels of amyloid-Beta (Aβ) and tau (TAU and P-TAU).  The ADNI dataset used to incorporate this biomarker data was produced by the University of Pennsylvania and available publicly on the ADNI website as “UPENNbiomk9041917.csv”
 
 For both cases, we selected only the entries that correspond to ADNI2. From this, we constructed features columns that include the patient ID (RID), visit code (VISCODE==‘bl’), Retaining RID and VISCODE allowed us to merge the drug dataset with the preexisting model dataset based off of ADNIMERGE.csv. We did not include any other observation-identifying information (e.g., EXAMDATE, SITE) or other predictors. A flowchart illustrating the aforementioned dataset selection and integration is provided below:
-<br /><br />
+<br />
 
 <p align="center">
   <img src="fig_flow_dataset3.png"  width="600" />
@@ -58,10 +58,10 @@ For both cases, we selected only the entries that correspond to ADNI2. From this
 
 ### 3. LITERATURE REVIEW/RELATED WORK
 Research has attempted to augment these combined diagnostic tools with information about patients’ dietary and medical history. One studied found that Vitamin K antagonists increase cognitive impairment. Similarly, some efforts have focused on the role of diuretics and nutritional supplements in developing dementia. One publication using ADNI data found an association between non-steroidal anti-inflammatory drugs (NSAIDs) and improved cognition. Another paper presented trends in the ADNI dataset with respect to medications used to treat AD. Other studies have addressed the role of nutritional interventions (vitamin B12, B6, and E; omega-3 fatty acids; flavanol) and non-specific pharmacological interventions (NSAIDs, hormone-replacement therapy, Ginkgo biloba). In addition, three studies assessed the relationship between blood-thinners and AD, but none of these used the ADNI dataset.,, According to Galvin (2012), “Combination of interventions, such as non-pharmacologic treatments, pharmacotherapy, and medical foods, with complementary mechanisms of action may provide a rational approach that may result in maximum preservation of cognitive function in patients with AD.” Despite the promising nature of improving diagnostic accuracy of AD using medication features, few studies using ADNI have considered the medications that we investigate: calcium and vitamin D supplements, blood-thinning drugs, and cholesterol-lowering drugs.
-<br /><br />
+<br />
 
 In addition, we also explore the the association of CSF biomarkers t-tau and Aβ with AD diagnosis. Both tau and AB accumulation in the brain reflect measurements of accumulation of peptides in the brain (in tangles inside neurons and plaques outside neurons, respectively) which lead to cognitive decline and are hallmark indicators of AD.,, Previous studies have focused on another CSF biomarker, Aβ, which is hailed as a “cardinal” feature of the disease. This led to therapies targeting the mechanisms of clearance and production of Aβ., However, research has indicated that an intracellular peptide – tau – may also play a significant role. Recent studies addressing the “amyloid-tau debate” suggest that perhaps tau is the true driver of AD symptoms. Approaches to modulate tau filament aggregation are beginning in clinical evaluation. Greater analytical representation of the relationship between tau and AD could bolster support for these nascent efforts and increase momentum in the clinical community toward developing therapeutic tools to address abnormal tau aggregation. As a contribution to this effort, in our model we compare the relative importance of t-tau and Aβ for accurate diagnosis of AD.
-<br /><br />
+<br />
 
 With respect to statistical models to relate clinical and environmental features that predict early diagnosis of the disease, numerous studies have been published that use the ADNI database to generate predictive models for the diagnosis and prognosis of AD. Statistical analyses using the ADNI database have established that both biomarkers as strong predictors of AD, however, few studies have explicitly addressed the relative importance of t-tau and Aβ in absolute terms (i.e., excluding the temporal evolution of levels in progression of AD):
 1. One study explored the role of Aβ and tau proteins in the conversion from MCI to AD, however the methods involved removing predictors that contain missing values. It is hoped that our model with more elaborate imputation methods could improve upon this previous work.
@@ -76,14 +76,27 @@ With respect to statistical models to relate clinical and environmental features
 #### Overview of Project Trajectory
 
 #### Overview of Modeling Tools
-We examined 17 different statistical models to select the optimal algorithm for predicting AD at baseline. All models used were derived from scikit-learn (sklearn) packages and executed in Python. Our data exploration, modeling approach, and progressive improvements to the baseline model are detailed next. Some caveats and limitations of our approach are mentioned directly in the text that follows; a more detailed examination of these conditions is provided in Appendix G.
-<br /><br />
+We examined 17 different statistical models to select the optimal algorithm for predicting AD at baseline. All models used were derived from scikit-learn (sklearn) packages and executed in Python. Our data exploration, modeling approach, and progressive improvements to the baseline model are detailed next. Some caveats and limitations of our approach are mentioned directly in the text that follows; a more detailed examination of these conditions is provided in Appendix G.  The following shows the 17 adopted statistical models in a list and in a chart where algorithms are organized into categories.
+<br />
 
 <p align="center">
   <img src="fig_models.png"  width="835" />
 </p>
 
 #### Choice of Response Variable
+The preliminary analysis led us to choose to use “DX_bl” as the response variable. The “DX” column includes up to five entries for a given patient along the longitudinal course of their participation in the study. Our initial exploration revealed that models using “DX” might risk having in-sample correlation because there are multiple rows for a single person, all of which would be non-independent as a result. This is validated by our later analysis of the classification accuracy using “DX” as the response variable, which is unrealistically high (accuracy >95%). 
+<br />
+
+Given that “DX_bl” is the response variable, we chose only the rows and predictors that correspond to the baseline visit for each patient. As such, the results of our model could be used as a predictive tool for diagnosis (CN, MCI, or AD) at any given point in time, but they do not provide information about disease progression, or the longitudinal change in features for an individual patient. For the purposes of this analysis, we focus on the diagnosis of AD (DX_bl = AD), but the tools provided in our model could be extended to assess the relationship between the variables we include (their values in absolute terms) and the likelihood of being diagnosed into any of the three categories.
+<br />
+
+#### Data Cleaning, Reconciliation, and Imputation 
+First, we consider just the observation related to ADNI2 and baseline (VISCODE == ‘bl’). Then, we substitute  -1, -4, and ‘Unknown’ as NaN, following the indication from ADNI training presentation. We calculated the percent of each predictor column that contains missing values and we also assumed that the data was missing completely at random (MCAR), which is in line with previous studies. We then discarded predictors that contain more than 40% of the missing data, and we sized down the dataframe by considering only the predictors referring to the baseline visit. In particular, we discarded variables that were connected to later visits, such as length of time incurred since the baseline visit. In order to do that we evaluate all the predictors to include in the model, drawing upon information from the preliminary model runs as well as qualitative information from the ADNI Data FAQs, an ADNI training presentation, and the ADNI2 procedures manual. FInally, we used hot-one encoding to expand categorical predictors (e.g. gender) and we encoded the response variable, DX_bl, with ordinal treatment such that the values CN, MCI, and AD are represented by integers 0, 1 and 2, respectively).
+<br />
+
+To explore possible covariates and/or collinearity, we used a covariance heatmap generated with Matplotlib. A heatmap of some select baseline model predictors and DX_bl is provided below. There is some expected collinearity between features – for example, the two genders are anticorrelated – and there does not appear to be significant covariance that would be cause for exclusion of certain features. Some of the features exhibit very strong correlation to DX_bl. This was one of the first indications that perhaps some predictors, especially CDR, MMSE, and RAVLT, could be too strong of predictors. In the next section, “Baseline Model: Selection, Optimization and Evaluation,” we discuss our reasoning for removing these three variables because they are effectively a proxy for AD diagnosis. Also of note is that the heatmap reveals that being Hispanic and male patients are positively correlated with AD diagnosis in the baseline visit.
+<br />
+
 
 
 ### Reference
