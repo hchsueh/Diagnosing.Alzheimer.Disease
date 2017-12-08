@@ -4,8 +4,6 @@ Final Project Report for AC209a - Introduction to Data Science
 
 Official Group #46: Carlo Amadei, Hsiang Hsu, Rebecca Stern, Thomas Hsueh
 
-### TODO1: *"Finding the smallest and least expensive feature subset is important" - AC209 Guidlines
-
 ### Table of Content
 - Problem statement and motivation
 - Introduction and description of the data
@@ -387,6 +385,7 @@ Model-Based Imputation:
 <p align="center">
   <img src="fig_appendix_A.png"  width="650" />
 </p>
+<br />
 
 Mean Imputation:
 <p align="center">
@@ -395,18 +394,46 @@ Mean Imputation:
 
 #### Appendix C. Accuracies using baseline+medications, baseline+biomarker, and baseline+medication+biomarker datasets
 Train and Test Accuracy, Baseline + Additional Medication Features
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+<br />
 
 Train and Test Accuracy, Baseline + Biomarker Features
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+<br />
 
 Train and Test Accuracy, Baseline + TAU Feature
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+<br />
 
 Train and Test Accuracy, Baseline + PTAU Feature
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+<br />
 
 Train and Test Accuracy, Baseline + Medication + Biomarker Features
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+<br />
 
 Supplemental Data: Drug ALONE without baseline predictors
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+<br />
 
 Supplemental Data: Comparisons between All Datasets and Selected Models
+<p align="center">
+  <img src="fig_appendix_A.png"  width="650" />
+</p>
+<br />
 
 #### Appendix E. Histogram of Missing Values in Baseline Predictor Columns (Prior to Data Cleaning)
 
