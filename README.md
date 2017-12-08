@@ -383,65 +383,89 @@ For this preprocessing method, we find out that Random Forest has the highest ac
 #### Appendix B. Accuracy on baseline train and test set with missing values imputed 
 Model-Based Imputation:
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_B1.png"  width="650" />
 </p>
 <br />
 
 Mean Imputation:
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_B2.png"  width="650" />
 </p>
 
 #### Appendix C. Accuracies using baseline+medications, baseline+biomarker, and baseline+medication+biomarker datasets
 Train and Test Accuracy, Baseline + Additional Medication Features
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_C1.png"  width="650" />
 </p>
 <br />
 
 Train and Test Accuracy, Baseline + Biomarker Features
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_C2.png"  width="650" />
 </p>
 <br />
 
 Train and Test Accuracy, Baseline + TAU Feature
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_C3.png"  width="650" />
 </p>
 <br />
 
 Train and Test Accuracy, Baseline + PTAU Feature
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_C4.png"  width="650" />
 </p>
 <br />
 
 Train and Test Accuracy, Baseline + Medication + Biomarker Features
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_C5.png"  width="650" />
 </p>
 <br />
 
 Supplemental Data: Drug ALONE without baseline predictors
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_C6.png"  width="650" />
 </p>
 <br />
 
 Supplemental Data: Comparisons between All Datasets and Selected Models
 <p align="center">
-  <img src="fig_appendix_A.png"  width="650" />
+  <img src="fig_appendix_C7.png"  width="650" />
 </p>
 <br />
 
 #### Appendix E. Histogram of Missing Values in Baseline Predictor Columns (Prior to Data Cleaning)
+<p align="center">
+  <img src="fig_appendix_E.png"  width="500" />
+</p>
 
 #### Appendix F. List of Drugs 
-
+<p align="center">
+  <img src="fig_appendix_F.png"  width="650" />
+</p>
 
 #### Appendix G. Key Limitations, Concerns, and Caveats of the Analysis
+We caution that the results of our analysis do not reveal a causal relationship between AD and the predictors we investigate. However, our results do provide justification for future research exploring the causal relationship in a manner that controls for potential confounders. 
+<br />
 
-#### Appendix H. Additional Preliminary EDA 
+#### Appendix H. Additional Preliminary EDA
+Covariance matrix using the strongest predictors (some of which are proxies for AD)
+<p align="center">
+  <img src="fig_appendix_H1.png"  width="650" />
+</p>
+<br />
+
+Scatter Matrix of Strong Predictors for AD (potential proxy diagnostic variables RAVLT, CDR, MMSE)
+<p align="center">
+  <img src="fig_appendix_H2.png"  width="650" />
+</p>
+<br />
+
+Violinplot of Age vs. DX_bl class:
+<p align="center">
+  <img src="fig_appendix_H3.png"  width="650" />
+</p>
+<br />
 
 
