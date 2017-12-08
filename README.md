@@ -94,10 +94,8 @@ __Statistical analysis of which peptide, Aβ or tau, is more important in diagno
 
 ### 4. MODELING APPROACH AND PROJECT TRAJECTORY 
 
-#### Overview of Project Trajectory
-
 #### Overview of Modeling Tools
-__We examined 17 different statistical models in total__ to select the optimal algorithm for predicting AD at baseline. All models used were derived from scikit-learn (sklearn) packages and executed in Python. Our data exploration, modeling approach, and progressive improvements to the baseline model are detailed next. Some caveats and limitations of our approach are mentioned directly in the text that follows; a more detailed examination of these conditions is provided in Appendix G. 
+__We examined 17 different statistical models in total__ to select the optimal algorithm for predicting AD at baseline. All models used were derived from scikit-learn (sklearn) packages and executed in Python. Our data exploration, modeling approach, and progressive improvements to the baseline model are detailed next. Some caveats and limitations of our approach are mentioned directly in the text that follows; a more detailed examination of these conditions is provided in Appendix G.
 <br />
 
 __To satisfy the requirement of CS209A, we have adopted the following three advance models:__
@@ -132,24 +130,34 @@ The following shows the 17 adopted statistical models in a list and in a chart w
 </p>
 
 #### Choice of Response Variable
-__The preliminary analysis led us to choose to use “DX_bl” as the response variable.__ The “DX” column includes up to five entries for a given patient along the longitudinal course of their participation in the study. Our initial exploration revealed that models using “DX” might risk having in-sample correlation because there are multiple rows for a single person, all of which would be non-independent as a result. This is validated by our later analysis of the classification accuracy using “DX” as the response variable, which is unrealistically high (accuracy >95%). 
+__The preliminary analysis led us to choose to use “DX_bl” as the response variable.__ The “DX” column includes up to five entries for a given patient along the longitudinal course of their participation in the study. Our initial exploration revealed that models using “DX” might risk having in-sample correlation because there are multiple rows for a single person, all of which would be non-independent as a result. This is validated by our later analysis of the classification accuracy using “DX” as the response variable, which is unrealistically high (accuracy >95%).  
 <br />
 
-Given that “DX_bl” is the response variable, we chose only the rows and predictors that correspond to the baseline visit for each patient. As such, the results of our model could be used as a predictive tool for diagnosis (CN, MCI, or AD) at any given point in time, but they do not provide information about disease progression, or the longitudinal change in features for an individual patient. __For the purposes of this analysis, we focus on the diagnosis of AD (DX_bl = AD), but the tools provided in our model could be extended to assess the relationship between the variables we include (their values in absolute terms) and the likelihood of being diagnosed into any of the three categories.__
+Given that “DX_bl” is the response variable, we chose only the rows and predictors that correspond to the baseline visit for each patient. As such, the results of our model could be used as a predictive tool for diagnosis (CN, MCI, or AD) at any given point in time, but they do not provide information about disease progression, or the longitudinal change in features for an individual patient. For the purposes of this analysis, we focus on the diagnosis of AD (DX_bl = AD), but the tools provided in our model could be extended to assess the relationship between the variables we include (their values in absolute terms) and the likelihood of being diagnosed into any of the three categories.
 <br />
 
 #### Data Cleaning, Reconciliation, and Imputation 
-First, we consider just the observation related to ADNI2 and baseline (VISCODE == ‘bl’). Then, we substitute  -1, -4, and ‘Unknown’ as NaN, following the indication from ADNI training presentation. We calculated the percent of each predictor column that contains missing values and we also assumed that the data was missing completely at random (MCAR), which is in line with previous studies. We then discarded predictors that contain more than 40% of the missing data, and we sized down the dataframe by considering only the predictors referring to the baseline visit. In particular, we discarded variables that were connected to later visits, such as length of time incurred since the baseline visit. In order to do that we evaluate all the predictors to include in the model, drawing upon information from the preliminary model runs as well as qualitative information from the ADNI Data FAQs, an ADNI training presentation, and the ADNI2 procedures manual. FInally, we used hot-one encoding to expand categorical predictors (e.g. gender) and we encoded the response variable, DX_bl, with ordinal treatment such that the values CN, MCI, and AD are represented by integers 0, 1 and 2, respectively).
+First, we consider just the observation related to ADNI2 and baseline (VISCODE == ‘bl’). Then, we substitute  -1, -4, and ‘Unknown’ as NaN, following the indication from [ADNI training presentation](https://adni.loni.usc.edu/wp-content/uploads/2012/08/slide_data_training_part2_reduced-size.pdf). We calculated the percent of each predictor column that contains missing values and we also assumed that the data was missing completely at random (MCAR), which is in line with previous studies.[40] We then discarded predictors that contain more than 40% of the missing data, and we sized down the dataframe by considering only the predictors referring to the baseline visit. In particular, we discarded variables that were connected to later visits, such as length of time incurred since the baseline visit. In order to do that we evaluate all the predictors to include in the model, drawing upon information from the preliminary model runs as well as qualitative information from the [ADNI Data FAQs](http://adni.loni.usc.edu/data-samples/data-faq/), [ADNI training presentation](https://adni.loni.usc.edu/wp-content/uploads/2012/08/slide_data_training_part2_reduced-size.pdf), and the [ADNI2 procedures manual](https://adni.loni.usc.edu/wp-content/uploads/2008/07/adni2-procedures-manual.pdf). Finally, we used hot-one encoding to expand categorical predictors (e.g. gender) and we encoded the response variable, DX_bl, with ordinal treatment such that the values CN, MCI, and AD are represented by integers 0, 1 and 2, respectively).[41]
 <br />
 
-__To explore possible covariates and/or collinearity, we used a covariance heatmap generated with Matplotlib.__ A heatmap of some select baseline model predictors and DX_bl is provided below. There is some expected collinearity between features – for example, the two genders are anticorrelated – and there does not appear to be significant covariance that would be cause for exclusion of certain features. __Some of the features exhibit very strong correlation to DX_bl.__ This was one of the first indications that perhaps some predictors, especially CDR, MMSE, and RAVLT, could be too strong of predictors. In the next section, “Baseline Model: Selection, Optimization and Evaluation,” we discuss our reasoning for removing these three variables because they are effectively a proxy for AD diagnosis. __Also of note is that the heatmap reveals that being Hispanic and male patients are positively correlated with AD diagnosis in the baseline visit.__
+__To explore possible covariates and/or collinearity, we used a covariance heatmap generated with Matplotlib.__ A heatmap of some select baseline model predictors and DX_bl is provided below. There is some expected collinearity between features – for example, the two genders are anticorrelated – and there does not appear to be significant covariance that would be cause for exclusion of certain features. __Some of the features exhibit very strong correlation to DX_bl.__ This was one of the first indications that perhaps some predictors, especially Clinical Dementia Rating (CDRSB_bl), Mini-Mental State Exam (MMSE_bl), and Rey Auditory Verbal Learning Test (RAVLT_learning_bl, RAVLT_forgetting_bl, RAVLT_perc_forgetting_bl, RAVLT_immediate_bl
+) __CDR, MMSE, and RAVLT could be too strong of predictors.__ __Also of note is that the heatmap reveals that being Hispanic and male patients are positively correlated with AD diagnosis in the baseline visit.__
 <br />
 
 <p align="center">
   <img src="fig_sec4_heatmap.png"  width="700" />
 </p>
 
-To handle missing values in the features that were not already discarded, we considered three different approaches:
+__From a conceptual standpoint, it makes sense to exclude predictors that represent a proxy for diagnosing Alzheimer’s Disease__ because these predictors are used to deduce the diagnosis response variable. Below is a density plot of the relationship between MMSE_bl and the various diagnostic classes. Addition EDA analyses are provided in Appendix H. 
+
+<p align="center">
+  <img src="fig_sec4_density_plot.png"  width="700" />
+</p>
+
+It is interesting to note that RAVLT_forgetting_bl does not seem to discriminate well between the diagnostic classes. In the next section, “Baseline Model: Selection, Optimization and Evaluation,” we further discuss our reasoning for removing these three variables given that they are effectively a proxy for AD diagnosis.
+<br />
+
+__To handle missing values__ in the features that were not already discarded, we considered three different approaches:
 1. remove all missing values.
 2. fill missing values with mean imputation.
 3. impute missing values using linear regression.
@@ -157,10 +165,17 @@ To handle missing values in the features that were not already discarded, we con
 __We chose to proceed with linear-regression-based imputation__, since it achieves high performance and does not result in a reduction of the AD class in as dramatic a way as when we remove all missing values, while mean-imputation performs worse and is theoretically making unrealistic, even destructive, assumption in the structural pattern among the data.
 <br />
 
-__We evaluated whether the dataset was imbalanced with respect to each diagnosis class at baseline.__ The ratio of the classes does not significantly change after pre-processing the data (remove missing values, imputing missing values), as illustrated in the figures below. While AD is smaller than the CN and MCI categories, the ratio between AD and the other classes is not less than 10%, so __we determine that the class does not suffer from under-representation.__
+__We evaluated whether the dataset was imbalanced with respect to each diagnosis class at baseline.__ The ratio of the classes does not significantly change after pre-processing the data (remove missing values, imputing missing values), as illustrated in the figures below. While AD is smaller than the CN and MCI categories, the ratio between AD and the other classes is not less than 10%, so __we determine that the class does not suffer from underrepresentation.__
 <br />
 
-Given that the symptomatic presentation of AD does not comprise any conclusive genetic, biomarker, or other clinical variable, this means that many predictors must be combined together to improve the predictive power of our model. As such, __we chose to perform the imputation on the entire dataset before splitting it into test and train sets; this allowed us to include as many observations as possible in the imputation__. Using the dataset of imputed values using linear regression, we split it into train and test sets by 75% and 25%, respectively. Finally, __we standardized the continuous predictors. We chose standardization over normalization because the former is less sensitive to outliers.__ In the next section, we describe our process of building the baseline model using the training set that results, and then improving the baseline model with additional predictors related to medications and biomarkers.
+<p align="center">
+  <img src="fig_sec4_histogram_dxbl.png"  width="700" />
+</p>
+
+Given that the symptomatic presentation of AD does not comprise any conclusive genetic, biomarker, or other clinical variable, this means that many predictors must be combined together to improve the predictive power of our model. As such, __we chose to perform the imputation on the entire dataset before splitting it into test and train sets; this allowed us to include as many observations as possible in the imputation.__ Taking the dataset with model-based imputation, we then split it into train and test sets by 75% and 25%, respectively. Finally, __we standardized the continuous predictors. We chose standardization over normalization because the former is less sensitive to outliers.__
+<br />
+
+In the next section, we describe our process of building the baseline model with the predictors derived from ADNIMERGE.csv, and then improving the baseline model with predictors from ADMCPATIENTDRUGCLASSES_20170512.csv and UPENNbiomk9041917.csv. 
 <br /><br />
 
 #### Baseline Model: Selection, Optimization and Evaluation
