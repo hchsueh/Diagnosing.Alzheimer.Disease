@@ -497,7 +497,7 @@ PTGENDER_Male
   <img src="fig_appendix_E.png"  width="500" />
 </p>
 
-#### Appendix F. List of Drugs 
+#### Appendix F. List of Drugs and Supplements Included in the Medication Features
 <p align="center">
   <img src="fig_appendix_F_new.png"  width="650" />
 </p>
