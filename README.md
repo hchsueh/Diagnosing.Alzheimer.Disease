@@ -5,17 +5,17 @@ Final Project Report for AC209a - Introduction to Data Science (Fall 2017)
 Official Group #46: Carlo Amadei, Hsiang Hsu, Rebecca Stern, Thomas Hsueh
 <br /><br />
 
-### Table of Content
+### Table of Contents
 - Problem statement and motivation
 - Introduction and description of the data
 - Literature review / related work
 - Modeling approach and project trajectory
 - Results, conclusions and future work
-- Reference
+- References
 - Appendix
 
 ### 1. PROBLEM STATEMENT AND MOTIVATION
-Alzheimer’s Disease (AD) is a degenerative brain disease and the most common cause of dementia, and AD rates are increasing annually.[1] As of 2006, the global prevalence of AD was 26.6 million, and this figure is expected to increase four-fold by 2050.[2] In the United States in 2016, AD was the sixth leading cause of death.[3] From 2000-2013, deaths from AD increased 71% – this rise was larger than the increase in deaths from stroke (+23%) and heart disease (+14%) during the same time period.
+Alzheimer’s Disease (AD) is a degenerative brain disease and the most common cause of dementia.[1] As of 2006, the global prevalence of AD was 26.6 million, and this figure is expected to increase four-fold by 2050.[2] In the United States in 2016, AD was the sixth leading cause of death.[3] From 2000-2013, deaths from AD increased 71% – this rise was larger than the increase in deaths from stroke (+23%) and heart disease (+14%) during the same time period.
 <br />
 
 <p align="center">
@@ -31,7 +31,7 @@ progresses more quickly in some than in others, and how the disease can be preve
 slowed or stopped.”  
 ```
 
-__The clinical challenge in diagnosing AD arises because early forms of the disease may not present motor, sensory, or coordination deficits, and laboratory tests are not determinative.[5]__ In addition, Mild Cognitive Impairment (MCI) is associated with AD, but more research is needed to improve accuracy of diagnostics that distinguish between amnestic MCI and prodromal AD.[6,7,8] Methods that improve accurate identification of early forms of AD, which do not present with cognitive symptoms, are an important component of clinical and research efforts to better characterize the causes and risks associated with this devastating progressive disease. 
+__The clinical challenge in diagnosing AD arises because early forms of the disease may not present motor, sensory, or coordination deficits, and laboratory tests are indeterminate.[5]__ In addition, Mild Cognitive Impairment (MCI) is associated with AD, but more research is needed to improve diagnostics that distinguish between amnestic MCI and prodromal AD.[6,7,8] Methods that improve accurate identification of early forms of AD, which do not present with cognitive symptoms, are an important component of clinical and research efforts to better characterize the causes and risks associated with this devastating progressive disease. 
 <br />
 
 Machine learning algorithms and statistical modeling offer a potential solution to offset the challenge in diagnosing early AD: by leveraging multiple data sources and combining information on neuropsychological, genetic, and biomarker indicators, among others, statistical models are a promising tool to enhance clinical detection of early AD. __In this project, we optimize predictive models for the diagnosis of AD pathologies using a set of baseline features, and we improve the model performance by incorporating additional variables related to patient medications and biomarkers.__ Specifically, we investigate the relationship between AD diagnosis and taking certain medications (i.e., Calcium supplements, Vitamin D supplements, blood-thinning medications, cholesterol-lowering drugs). We also evaluate the importance of two cerebrospinal fluid (CSF) biomarkers, tau (tau) and amyloid-Beta (Aβ), in diagnosing AD, as the relative role of these two biomarkers in AD remains a contentious issue in the academic community.[9,10] __Our hypothesis are as follows:__
