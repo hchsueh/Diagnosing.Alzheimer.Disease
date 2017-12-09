@@ -34,22 +34,22 @@ slowed or stopped.”
 __The clinical challenge in diagnosing AD arises because early forms of the disease may not present motor, sensory, or coordination deficits, and laboratory tests are indeterminate.[5]__ In addition, Mild Cognitive Impairment (MCI) is associated with AD, but more research is needed to improve diagnostics that distinguish between amnestic MCI and prodromal AD.[6,7,8] Methods that improve accurate identification of early forms of AD, which do not present with cognitive symptoms, are an important component of clinical and research efforts to better characterize the causes and risks associated with this devastating progressive disease. 
 <br />
 
-Machine learning algorithms and statistical modeling offer a potential solution to offset the challenge in diagnosing early AD: by leveraging multiple data sources and combining information on neuropsychological, genetic, and biomarker indicators, among others, statistical models are a promising tool to enhance clinical detection of early AD. __In this project, we optimize predictive models for the diagnosis of AD pathologies using a set of baseline features, and we improve the model performance by incorporating additional variables related to patient medications and biomarkers.__ Specifically, we investigate the relationship between AD diagnosis and taking certain medications (i.e., Calcium supplements, Vitamin D supplements, blood-thinning medications, cholesterol-lowering drugs). We also evaluate the importance of two cerebrospinal fluid (CSF) biomarkers, tau (tau) and amyloid-Beta (Aβ), in diagnosing AD, as the relative role of these two biomarkers in AD remains a contentious issue in the academic community.[9,10] __Our hypothesis are as follows:__
+Machine learning algorithms and statistical modeling offer a potential solution to offset the challenge in diagnosing early AD: by leveraging multiple data sources and combining information on neuropsychological, genetic, and biomarker indicators, among others, statistical models are a promising tool to enhance clinical detection of early AD. __In this project, we optimize predictive models for the diagnosis of AD pathologies using a set of baseline features, and we improve the model performance by incorporating additional variables related to patient medications and biomarkers.__ Specifically, we investigate the relationship between AD diagnosis and taking certain medications (calcium supplements, Vitamin D supplements, blood-thinning medications, cholesterol-lowering drugs). We also evaluate the importance of two cerebrospinal fluid (CSF) biomarkers, tau (tau) and amyloid-Beta (Aβ), in diagnosing AD, as the relative role of these two biomarkers in AD remains a contentious issue in the academic community.[9,10] __Our hypothesis are as follows:__
 1. __The diagnosis of early AD can be improved by considering features related to whether a patient takes certain medications (calcium, vitamin D, blood thinners, and cholesterol-lowering drugs).__
 2. __CSF-tau is a stronger predictor than Aβ for AD diagnosis.__
 <br />
 
-The modeling approach we design could serve as a tool for clinicians to improve diagnosis of AD, as well as a springboard for future research related to AD and other neurodegenerative diseases.[11] __We contacted Sally Temple, Ph.D., a renowned neuroscientist specializing in neurodegenerative disease and co-founder of the Regenerative Research Foundation, who offered her insights related to our project objectives:__
+The model that we designed could serve as a tool for clinicians to improve diagnosis of AD, as well as a springboard for future research related to AD and other neurodegenerative diseases.[11] __We contacted Sally Temple, Ph.D., a renowned neuroscientist specializing in neurodegenerative disease and co-founder of the Regenerative Research Foundation, who offered her insights related to our project objectives:__
 
 ```markdown
-“It is essential to improve identification of signs of AD onset, because as drugs are
+“It is essential to improve identification of signs of AD onset because as drugs are
 developed, early intervention will be an important treatment goal.”
 ```
 <br />
  
 
 ### 2. INTRODUCTION AND DESCRIPTION OF THE DATA 
-__We acquired our dataset from the Alzheimer’s Disease Neuroimaging Initiative (ADNI).[12]__ The baseline statistical model that we develop is constructed using the ADNIMERGE.csv dataset from ADNI, which contains select variables related to clinical, genetic, neuropsychological and imaging results for the participants in ADNI. All phases of ADNI are represented in ADNIMERGE (e.g., ADNI1, ADNI2, ADNIGO). To maintain consistency across our analyses and manageability of the data, and to ensure that we can select only one observation for each patient effectively, we select only the patients who participated in the ADNI2 phase of the Initiative, representing a cohort size of approximately 800 patients. In the ADNI2 observations, each row corresponds to an exam of a patient (“RID”, the patient identifier), and specific visit; multiple rows can refer to the same patient for different visits. A thorough description of the ADNI cohort demographics is available online[13]; in brief, the ADNI2 participants are from North America, aged 55-90, and ethnicities are represented in the study. The visit code column (VISCODE) allows us to identify baseline visit (‘bl’) predictors and predictors that refer to later visits. There are 94 columns in the baseline dataset, the majority of which correspond to independent variables that could be assessed at each exam. 
+__We acquired our dataset from the Alzheimer’s Disease Neuroimaging Initiative (ADNI).[12]__ The baseline statistical model that we develop is constructed using the ADNIMERGE.csv dataset from ADNI, which contains select variables related to clinical, genetic, neuropsychological and imaging results for the participants in ADNI. All phases of the ADNI study are represented in ADNIMERGE (e.g., ADNI1, ADNI2, ADNIGO). To maintain consistency across our analyses and manageability of the data, and to ensure that we can select only one observation for each patient effectively, we select only the patients who participated in the ADNI2 phase of the Initiative, representing a cohort size of approximately 800 patients. In the ADNI2 observations, each row corresponds to an exam of a patient (“RID”, the patient identifier), and specific visit; multiple rows can refer to the same patient for different visits. A thorough description of the ADNI cohort demographics is available online[13]; in brief, the ADNI2 participants are from North America, aged 55-90, and ethnicities are represented in the study. The visit code column (VISCODE) allows us to identify baseline visit (‘bl’) predictors and predictors that refer to later visits. There are 94 columns in the baseline dataset, the majority of which correspond to independent variables that could be assessed at each exam. 
 <br />
 
 There are two diagnosis features, DX and DX_bl, which correspond to diagnosis at each visit and at a patient’s first visit, or baseline visit. All diagnoses entries correspond to one of five categories: Cognitively Normal (CN), Significant Subjective Memory Concern (SMC), Early Mildly Cognitively Impaired (EMCI), Late Mildly Cognitively Impaired (LMCI, or classic MCI), and Alzheimer’s Disease (AD).[14] We combine the EMCI and LMCI diagnostic classes into a single class, Mild Cognitive Impairment (MCI); an auxiliary benefit of doing this is it facilitates the extension of our model for future analyses that might include ADNI1 data, which employs only a single MCI category. We combine CN and SMC into one category, as SMC patients qualify as being “cognitively normal,” as illustrated below. For detailed treatment on our handling of the diagnosis feature as a response variable, please see the discussion in Section 4 titled, “Choice of Response Variable.”
@@ -62,7 +62,7 @@ There are two diagnosis features, DX and DX_bl, which correspond to diagnosis at
 #### Supplemental features added to the baseline data
 __In addition to the ADNI2 entries within ADNIMERGE.csv, we incorporate two additional datsets:__
 
-1. __Data on patients’ medications using the ADNI dataset__: `ADMCPATIENTDRUGCLASSES_20170512.csv`. We construct four new features, or predictors, for AD diagnosis that are comprised of components within the drug dataset that qualify as one of our four categories for analysis: calcium supplements, vitamin D supplements, blood-thinning drugs, and cholesterol-lowering drugs. For a complete list of specific drug and supplement names, please see Appendix F. Importantly, taking any of these medications does not disqualify a patient from participating as part of the ADNI cohort.[15] 
+1. __Data on patients’ medications using the ADNI dataset__: `ADMCPATIENTDRUGCLASSES_20170512.csv`. We construct four new features, or predictors, for diagnosis (DX_bl) that are comprised of components within the drug dataset that qualify as one of our four categories for analysis: calcium supplements, vitamin D supplements, blood-thinning drugs, and cholesterol-lowering drugs. For a complete list of specific drug and supplement names, please see Appendix F. Importantly, taking any of these medications does not disqualify a patient from participating as part of the ADNI cohort.[15] 
 
 2. __Data on patients’ cerebrospinal fluid (CSF) biomarker levels of amyloid-beta (Aβ) and tau (TAU and P-TAU)__ using the ADNI dataset, `UPENNbiomk9041917.csv`. This data was produced by the ADNI Biomarker Core Laboratory, which is directed by John Trojanowski, M.D. and co-directed by Leslie Shaw, Ph.D. at the University of Pennsylvania.
 
@@ -139,7 +139,7 @@ The following shows the 17 adopted statistical models in a list and in a chart w
 __The preliminary analysis led us to choose to use “DX_bl” as the response variable__. The “DX” column includes up to five entries for a given patient along the longitudinal course of their participation in the study. Our initial exploration revealed that models using “DX” might risk having in-sample correlation because there are multiple rows for a single person, all of which would be non-independent as a result. This is validated by our later analysis of the classification accuracy using “DX” as the response variable, which is unrealistically high (accuracy >95%). 
 <br />
 
-Given that “DX_bl” is the response variable, we chose only the rows and predictors that correspond to the baseline visit for each patient. As such, the results of our model could be used as a predictive tool for diagnosis (CN, MCI, or AD) at any given point in time, but they do not provide information about disease progression, or the longitudinal change in features for an individual patient. For the purposes of this analysis, a large part of our discussion focuses on the diagnosis of AD (DX_bl = AD), but the tools provided in our model could be extended to assess the relationship between the variables we include (their values in absolute terms) and the likelihood of being diagnosed into any of the three categories.
+Given that “DX_bl” is the response variable, we chose only the rows and predictors that correspond to the baseline visit for each patient. As such, the results of our model could be used as a predictive tool for diagnosis (CN, MCI, or AD) at any given point in time, but they do not provide information about disease progression, or the longitudinal change in features for an individual patient. For the purposes of this analysis, a large part of our discussion focuses on the diagnosis of AD, but the tools provided in our model can be used to assess the relationship between the variables we include (their values in absolute terms) and the likelihood of classification into any of the three categories.
 <br />
 
 #### Data Cleaning, Reconciliation, and Imputation 
@@ -245,7 +245,7 @@ Baseline+Medication+Biomarker Model:
 2. The Predictors that are Positively Correlated to AD are: `'AGE', 'Hippocampus_bl', 'MOCA_bl'`
 3. The Predictors that are Negatively Correlated to AD are: `'ADAS11_bl', 'ADAS13_bl', 'FAQ_bl', 'EcogPtMem_bl', 'EcogPtTotal_bl', 'EcogSPMem_bl', 'EcogSPVisspat_bl', 'EcogSPTotal_bl', 'PTRACCAT_White', 'ANY BT_1', 'ANY CHOL_1'`
 
-It is important to note that while these results and the details that follow reveal interesting findings about potential interactions between patient medications and the likelihood of AD diagnosis, the results do not determine causality in the relationship. Nonetheless, our results are valuable because they provide information that could motivate future research efforts to understand the mechanisms that underlie the relationships.
+It is important to note that while these results and the details that follow reveal interesting findings about potential interactions between patient medications and the likelihood of AD diagnosis, the results do not determine causality in the relationship. Future research efforts could be directed to address the effect of potential confounding variables retrospectively, as predictor interactions are not possible to manipulate or explore directly, given the nature of the study. Nonetheless, our results are valuable because they provide information that could motivate future research efforts to understand the mechanisms that underlie the relationships.
 <br />
 
 #### Baseline Model Results
@@ -260,7 +260,7 @@ Below are details of all models’ accuracy on the train and test set using the 
   <img src="fig_sec5_bar1.png"  width="830" />
 </p>
 
-Overall, including the medication features generates 1 ~ 2% improvement in AD diagnosis accuracy. We find that taking calcium and vitamin D supplements does not have a significant effect on the diagnosis class at baseline visit. However, taking blood thinners and cholesterol-lowering drugs are both significant features in the model; they are negatively correlated with AD diagnosis (e.g., __taking blood-thinners appears to reduce the risk of Alzheimer’s Disease, which confirms the aforementioned literature review that reveals blood-thinners reduce dementia risk).[18]__ Our finding that taking cholesterol-lowering drugs is associated with a lower likelihood of AD diagnosis is particularly notable; __to the best of our knowledge, no studies using the ADNI dataset have addressed this interaction before. We hope that these results will motivate subsequent clinical research to investigate the relationships that we find.__
+Overall, including the medication features generates 1 ~ 2% improvement in DX_bl diagnosis accuracy. We find that taking calcium and vitamin D supplements does not have a significant effect on the diagnosis class at baseline visit. However, taking blood thinners and cholesterol-lowering drugs are both significant features in the model; they are negatively correlated with AD diagnosis (e.g., __taking blood-thinners appears to reduce the risk of Alzheimer’s Disease, which confirms the aforementioned literature review that reveals blood-thinners reduce dementia risk).[18]__ Our finding that taking cholesterol-lowering drugs is associated with a lower likelihood of AD diagnosis is particularly notable; __to the best of our knowledge, no studies using the ADNI dataset have addressed this interaction before. We hope that these results will motivate subsequent clinical research to investigate the relationships that we find.__
 <br />
 
 A table of accuracies using the baseline+medication model follows: 
@@ -310,7 +310,7 @@ As previously discussed and illustrated in the table above, the baseline model p
 Accurate and early diagnosis of AD represents is crucial for mitigating the devastation caused by this disease, which has been increasing in prevalence.[44] Statistical models can serve as a tool to improve clinical diagnosis early AD and offer new insights for research about this devastating progressive illness, as well as other neurodegenerative diseases. We present a model using baseline features from the Alzheimer’s Disease Neuroimaging Initiative (ADNI) Phase 2 cohort using the ADNIMERGE.csv, and we expand the baseline model by accounting for features related to a patient’s current medications – calcium and vitamin D supplements, blood-thinning drugs, and cholesterol-lowering drugs – and a patient’s CSF total-tau, phosphorylated-tau and amyloid-β levels. Our results indicate that patients’ age, race, Everyday Cognition Memory Domain test scores (EcogSPMem), hippocampal volume, and Montreal Cognitive Assessment (MoCA) are associated with a higher likelihood of being diagnosed with AD based on our analysis of the baseline visit data. In addition, our results reveal that neither of the CSF biomarkers, tau or Aβ, are significant predictors of DX_bl when added to the baseline model. The fact that we find an association between blood-thinning (ANY BT) and cholesterol-lowering (ANY CHOL) drugs and AD diagnosis is significant because these two features are, we imagine, relatively easily translated from the clinic. Patient medical history should be readily attainable, cheap to reproduce, and, given the increasingly mainstream use of electronic health records, a potentially untapped resource for improving diagnosis of early stage AD. One might speculate that supplementing clinical diagnoses with information using a statistical model that includes features for patients’ medications could improve diagnostic accuracy. Perhaps, more research should be directed toward identifying causal links between medications that affect cardiovascular systems and cholesterol levels, rather than toward resolving the decades-old “tau-amyloid debate.” Our improved model with medication features could ameliorate the challenge of diagnosing early stages of AD when other symptoms are less readily detectable, which continues to plague the clinical and research communities alike. 
 
 #### Future Research
-Our results reveal the potential for nutritional and medical history to serve as a supplemental feature for accurate AD diagnosis. In later work, we would like to explore the relationship between other medications – including Vitamin E supplements – and early AD diagnosis. The research community would benefit from an examination of the potential causal factors underlying the interaction between blood-thinning drugs and AD. In addition, further analysis of the relationship between cholesterol-lowering drugs and DX_bl using ADNIGO and ADNI1 would provide support for our novel findings. Another potential avenue will be to incorporate ADNI3 data, which follows patients for a further five years and concludes in 2022. ADNI3 is particularly relevant with respect to our findings about the relative insignificance of biomarker data as supplements to the ADNIMERGE predictors because one goal of ADNI3 is to use “tau PET imaging to determine how tau tangles are related to amyloid levels and to cognition.[45]” Finally, we encourage researchers to explore datasets other than ADNI and to report whether a similar relationship between cholesterol-lowering drugs and these AD diagnostic classes can be found, as this would further validate our findings.
+Our results reveal the potential for nutritional and medical history to serve as a supplemental feature for accurate AD diagnosis. In later work, we would like to explore the relationship between other medications – including Vitamin E supplements – and early AD diagnosis. The research community would benefit from an examination of the potential causal factors underlying the interaction between blood-thinning drugs and AD. In addition, further analysis of the relationship between cholesterol-lowering drugs and DX_bl using ADNIGO and ADNI1 would provide support for our novel findings. We would also like to explore the relationship between potential confounding variables. We find that calcium supplements do not have a strong influence on the diagnostic class; this may be due in part to the fact that we have within-sample variation in the response to these two features. For example, women are more likely take calcium supplements and also less likely to develop AD; this could be a confounding effect that we woud like to address in the future. Another potential avenue will be to incorporate ADNI3 data, which follows patients for a further five years and concludes in 2022. ADNI3 is particularly relevant with respect to our findings about the relative insignificance of biomarker data as supplements to the ADNIMERGE predictors because one goal of ADNI3 is to use “tau PET imaging to determine how tau tangles are related to amyloid levels and to cognition.[45]” Finally, we encourage researchers to explore datasets other than ADNI and to report whether a similar relationship between cholesterol-lowering drugs and these AD diagnostic classes can be found, as this would further validate our findings.
 
 #### Conflict of Interest
 The authors of this report declare no conflict of interest.
@@ -436,6 +436,62 @@ Supplemental Data: Comparisons between All Datasets and Selected Models
 </p>
 <br />
 
+#### Appendix D. All Predictors Used from ADNIMERGE.csv
+AGE                                               
+PTEDUCAT                                          
+CDRSB_bl                                          
+ADAS11_bl                                         
+ADAS13_bl                                         
+MMSE_bl                                           
+RAVLT_immediate_bl                                
+RAVLT_learning_bl                                 
+RAVLT_forgetting_bl                               
+RAVLT_perc_forgetting_bl                          
+FAQ_bl                                            
+Ventricles_bl                                     
+Hippocampus_bl                                    
+WholeBrain_bl                                     
+Entorhinal_bl                                     
+Fusiform_bl                                       
+MidTemp_bl                                        
+ICV_bl                                            
+MOCA_bl                                           
+EcogPtMem_bl                                      
+EcogPtLang_bl                                     
+EcogPtVisspat_bl                                  
+EcogPtPlan_bl                                     
+EcogPtOrgan_bl                                    
+EcogPtDivatt_bl                                   
+EcogPtTotal_bl                                    
+EcogSPMem_bl                                      
+EcogSPLang_bl                                     
+EcogSPVisspat_bl                                  
+EcogSPPlan_bl                                     
+EcogSPOrgan_bl                                    
+EcogSPDivatt_bl                                   
+EcogSPTotal_bl                                    
+FDG_bl                                            
+AV45_bl                                           
+PTETHCAT_Hisp/Latino                              
+PTETHCAT_Not Hisp/Latino                          
+PTRACCAT_Am Indian/Alaskan                        
+PTRACCAT_Asian                                    
+PTRACCAT_Black                                    
+PTRACCAT_Hawaiian/Other PI                        
+PTRACCAT_More than one                            
+PTRACCAT_White                                    
+PTMARRY_Divorced                                  
+PTMARRY_Married                                   
+PTMARRY_Never married                             
+PTMARRY_Widowed                                   
+APOE4_ .                                          
+APOE4_1.                                          
+APOE4_2.                                          
+PTGENDER_Female                                   
+PTGENDER_Male                                         
+
+
+
 #### Appendix E. Histogram of Missing Values in Baseline Predictor Columns (Prior to Data Cleaning)
 <p align="center">
   <img src="fig_appendix_E.png"  width="500" />
@@ -447,7 +503,7 @@ Supplemental Data: Comparisons between All Datasets and Selected Models
 </p>
 
 #### Appendix G. Key Limitations, Concerns, and Caveats of the Analysis
-We caution that the results of our analysis do not reveal a causal relationship between AD and the predictors we investigate. However, our results do provide justification for future research exploring the causal relationship in a manner that controls for potential confounders. 
+We caution that the results of our analysis do not reveal a causal relationship between AD and the predictors we investigate. Likewise, given the nature of this study, we cannot control for potential confounders; that is, there may be other effects that are driving the relationship between our predictors and the response variable. Finally, we note that while the results reveal a correlation with the DX_bl, some classes of the response variable are better predicted than others using the features that we chose. A potential future work to address this issue will be to explore the sensitivity of our model results to one of the predictors, by artificially changing one of them. That said, the statistical model can never represent real-life data and as such is inherently limited in this regard. In spite of these unavoidable limitations, our results do provide justification for future research exploring the causal relationship in a manner that controls for potential confounders. 
 <br />
 
 #### Appendix H. Additional Preliminary EDA
