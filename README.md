@@ -1,4 +1,4 @@
-## Improving Alzheimer's Disease Diagnosis Accuracy: Evaluating the Influence of Patient Medications and Biomarkers
+## Toward an Improved Diagnosis of Alzheimer's Disease Pathologies: Evaluating the Influence of Patient Medications and Biomarkers
 
 Final Project Report for AC209a - Introduction to Data Science (Fall 2017)
 
